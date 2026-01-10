@@ -1,0 +1,21 @@
+{
+  "name": "@arto-app/site",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --mode client && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "hono": "^4.7.0",
+    "honox": "^0.1.0"
+  },
+  "devDependencies": {
+    "@hono/vite-ssg": "^0.1.0",
+    "@tabler/icons": "^3.31.0",
+    "@types/node": "^25.0.6",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
+  }
+}

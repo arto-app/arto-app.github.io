@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(deno task:*)",
+      "Bash(just:*)",
+      "Bash(deno fmt:*)",
+      "Bash(deno check:*)"
+    ]
+  }
+}
