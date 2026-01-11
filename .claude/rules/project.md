@@ -2,16 +2,14 @@
 
 ## Code Style
 
-- Use Deno's built-in formatter (`deno fmt`)
 - TypeScript strict mode
 - JSX with Hono's JSX runtime (`hono/jsx`)
 
 ## Component Guidelines
 
-- Page components go in `src/pages/`
-- Shared components go in `src/components/`
-- Use `hono/css` for component-scoped styles
-- Global styles only in `static/css/style.css`
+- Route components go in `app/routes/`
+- Shared components go in `app/components/`
+- Global styles in `public/`
 
 ## CSS Variables
 
@@ -38,10 +36,9 @@ var(--accent-fg)        /* Primary button text */
 
 ## Imports
 
-Use import map aliases defined in `deno.json`:
+Standard ES module imports:
 
 ```typescript
 import { Hono } from "hono";
 import { css } from "hono/css";
-import { copy } from "@std/fs";
 ```
