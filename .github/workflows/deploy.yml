@@ -21,13 +21,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
+      - name: Setup Nix
+        uses: nixbuild/nix-quick-install-action@v34
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
         with:
-          deno-version: v2.x
+          path: node_modules
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install dependencies
+        run: nix develop --command npm ci
 
       - name: Build
-        run: deno task build
+        run: nix develop --command npm run build
         env:
           BASE_PATH: /arto-site/
 
