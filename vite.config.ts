@@ -40,6 +40,10 @@ export default defineConfig(({ mode }) => {
         client: {
           input: ["/app/style.css", "/app/client.ts"],
         },
+        devServer: {
+          // Pass base path to @hono/vite-dev-server to fix import.meta.env.BASE_URL
+          base,
+        },
       }),
       ssg({ entry: "./app/server.ts" }),
     ],

@@ -2,6 +2,7 @@ import { jsxRenderer } from "hono/jsx-renderer";
 import { Link, Script } from "honox/server";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { basePath } from "../lib/path";
 
 declare module "hono" {
   interface ContextRenderer {
@@ -24,7 +25,7 @@ export default jsxRenderer(({ children, title, current }) => {
         />
         <meta name="theme-color" content="#0d1117" />
         <title>{title}</title>
-        <link rel="icon" href="/images/logo.svg" type="image/svg+xml" />
+        <link rel="icon" href={basePath("/images/logo.svg")} type="image/svg+xml" />
         <Link href="/app/style.css" rel="stylesheet" />
       </head>
       <body>
@@ -32,7 +33,7 @@ export default jsxRenderer(({ children, title, current }) => {
         <main>{children}</main>
         <Footer />
         {import.meta.env.PROD ? (
-          <script type="module" src="/static/client.js" />
+          <script type="module" src={basePath("/static/client.js")} />
         ) : (
           <Script src="/app/client.ts" />
         )}

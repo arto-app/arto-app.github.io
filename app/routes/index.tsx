@@ -1,5 +1,6 @@
 import type { Child } from "hono/jsx";
 import { createRoute } from "honox/factory";
+import { basePath } from "../lib/path";
 import {
   IconBolt,
   IconBook,
@@ -17,7 +18,7 @@ export default createRoute((c) => {
       {/* Hero Section */}
       <section class="hero">
         <div class="hero-container">
-          <img src="/images/logo.svg" alt="Arto Logo" class="hero-logo" />
+          <img src={basePath("/images/logo.svg")} alt="Arto Logo" class="hero-logo" />
           <h1 class="hero-title">The Art of Reading Markdown</h1>
           <p class="hero-tagline">
             A beautiful, offline-first macOS app that faithfully reproduces
@@ -25,7 +26,7 @@ export default createRoute((c) => {
             a quiet, deliberate act of understanding.
           </p>
           <div class="cta-container">
-            <a href="/install" class="btn-primary">
+            <a href={basePath("/install")} class="btn-primary">
               <IconDownload size={20} stroke={2} />
               Install Arto
             </a>
@@ -43,33 +44,33 @@ export default createRoute((c) => {
             <div class="carousel-track">
               <div class="carousel-slide active">
                 <img
-                  src="/images/hero-light.png"
+                  src={basePath("/images/hero-light.png")}
                   alt="Arto - GitHub-style Markdown rendering"
                   class="carousel-img carousel-img-light"
                 />
                 <img
-                  src="/images/hero-dark.png"
+                  src={basePath("/images/hero-dark.png")}
                   alt="Arto - GitHub-style Markdown rendering"
                   class="carousel-img carousel-img-dark"
                 />
               </div>
               <div class="carousel-slide">
                 <img
-                  src="/images/carousel-mermaid.gif"
+                  src={basePath("/images/carousel-mermaid.gif")}
                   alt="Arto - Interactive Mermaid diagrams"
                   class="carousel-img"
                 />
               </div>
               <div class="carousel-slide">
                 <img
-                  src="/images/carousel-sidebar.gif"
+                  src={basePath("/images/carousel-sidebar.gif")}
                   alt="Arto - File explorer sidebar"
                   class="carousel-img"
                 />
               </div>
               <div class="carousel-slide">
                 <img
-                  src="/images/carousel-toc.gif"
+                  src={basePath("/images/carousel-toc.gif")}
                   alt="Arto - Table of contents panel"
                   class="carousel-img"
                 />
@@ -145,10 +146,10 @@ export default createRoute((c) => {
           </p>
           <div class="video-container">
             <video
-              src="/videos/demo.mp4"
+              src={basePath("/videos/demo.mp4")}
               controls
               preload="metadata"
-              poster="/images/hero-light.png"
+              poster={basePath("/images/hero-light.png")}
               class="demo-video"
             >
               Your browser does not support the video tag.
@@ -168,7 +169,7 @@ export default createRoute((c) => {
             is built on this philosophy—providing a serene space where content
             takes center stage and the interface fades into the background.
           </p>
-          <a href="/features" class="btn-secondary">
+          <a href={basePath("/features")} class="btn-secondary">
             Explore All Features
           </a>
         </div>

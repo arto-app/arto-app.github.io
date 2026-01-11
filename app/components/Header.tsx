@@ -1,3 +1,4 @@
+import { basePath } from "../lib/path";
 import { IconBrandGithub, IconSun } from "./Icons";
 
 type NavItem = {
@@ -7,17 +8,17 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { href: "/", label: "Home", id: "home" },
-  { href: "/features", label: "Features", id: "features" },
-  { href: "/install", label: "Install", id: "install" },
+  { href: basePath("/"), label: "Home", id: "home" },
+  { href: basePath("/features"), label: "Features", id: "features" },
+  { href: basePath("/install"), label: "Install", id: "install" },
 ];
 
 export function Header({ current }: { current: string }) {
   return (
     <header class="site-header">
       <div class="nav-container">
-        <a href="/" class="logo-link">
-          <img src="/images/logo.svg" alt="Arto" class="logo-img" />
+        <a href={basePath("/")} class="logo-link">
+          <img src={basePath("/images/logo.svg")} alt="Arto" class="logo-img" />
           <span>Arto</span>
         </a>
         <nav class="site-nav">

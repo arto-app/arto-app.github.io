@@ -1,4 +1,5 @@
 import { createRoute } from "honox/factory";
+import { basePath } from "../../lib/path";
 import {
   IconBook,
   IconCheck,
@@ -55,7 +56,7 @@ export default createRoute((c) => {
           <div class="feature-demo-grid">
             <div class="feature-demo">
               <img
-                src="/images/feature-rendering.png"
+                src={basePath("/images/feature-rendering.png")}
                 alt="GitHub-style Markdown rendering"
                 class="feature-demo-img"
               />
@@ -63,7 +64,7 @@ export default createRoute((c) => {
             </div>
             <div class="feature-demo">
               <img
-                src="/images/feature-alerts.png"
+                src={basePath("/images/feature-alerts.png")}
                 alt="GitHub Alerts support"
                 class="feature-demo-img"
               />
@@ -99,7 +100,7 @@ export default createRoute((c) => {
           <div class="feature-demo-grid">
             <div class="feature-demo">
               <img
-                src="/images/feature-syntax.png"
+                src={basePath("/images/feature-syntax.png")}
                 alt="Syntax highlighting"
                 class="feature-demo-img"
               />
@@ -107,7 +108,7 @@ export default createRoute((c) => {
             </div>
             <div class="feature-demo">
               <img
-                src="/images/feature-katex.png"
+                src={basePath("/images/feature-katex.png")}
                 alt="KaTeX math rendering"
                 class="feature-demo-img"
               />
@@ -116,7 +117,7 @@ export default createRoute((c) => {
           </div>
           <div class="feature-demo">
             <img
-              src="/images/feature-mermaid.gif"
+              src={basePath("/images/feature-mermaid.gif")}
               alt="Mermaid diagram interaction demo"
               class="feature-demo-img"
             />
@@ -161,7 +162,7 @@ export default createRoute((c) => {
           <div class="feature-demo-grid">
             <div class="feature-demo">
               <img
-                src="/images/feature-sidebar.gif"
+                src={basePath("/images/feature-sidebar.gif")}
                 alt="File explorer sidebar demo"
                 class="feature-demo-img"
               />
@@ -169,7 +170,7 @@ export default createRoute((c) => {
             </div>
             <div class="feature-demo">
               <img
-                src="/images/feature-toc.png"
+                src={basePath("/images/feature-toc.png")}
                 alt="Table of contents panel"
                 class="feature-demo-img"
               />
@@ -210,7 +211,7 @@ export default createRoute((c) => {
           <div class="feature-demo-grid">
             <div class="feature-demo">
               <img
-                src="/images/feature-search.png"
+                src={basePath("/images/feature-search.png")}
                 alt="Find in page"
                 class="feature-demo-img"
               />
@@ -218,7 +219,7 @@ export default createRoute((c) => {
             </div>
             <div class="feature-demo">
               <img
-                src="/images/feature-pinned.png"
+                src={basePath("/images/feature-pinned.png")}
                 alt="Pinned search with multi-color highlights"
                 class="feature-demo-img"
               />
@@ -267,7 +268,7 @@ export default createRoute((c) => {
           </div>
           <div class="feature-demo">
             <img
-              src="/images/feature-multiwindow.gif"
+              src={basePath("/images/feature-multiwindow.gif")}
               alt="Multi-window support"
               class="feature-demo-img"
             />
