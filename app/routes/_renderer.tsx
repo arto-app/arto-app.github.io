@@ -48,6 +48,26 @@ export default jsxRenderer(({ children, title, current }) => {
         <title>{title}</title>
         <link rel="icon" href={basePath("/images/logo.svg")} type="image/svg+xml" />
         <Link href="/app/style.css" rel="stylesheet" />
+
+        {/* Google Analytics */}
+        {import.meta.env.PROD && (
+          <>
+            <script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-JM6EYYX4DH"
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-JM6EYYX4DH');
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body>
         <Header current={current} />
