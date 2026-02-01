@@ -5,6 +5,7 @@ import {
   IconCode,
   IconCpu,
   IconDeviceDesktop,
+  IconEmacs,
   IconHomebrew,
   IconInfoCircle,
   IconNix,
@@ -193,6 +194,60 @@ cargo build --release`}
             </p>
             <p class="install-note-text">
               Requires Vim 9.0+ or Neovim 0.10+, and Arto v0.15.0+ installed at{" "}
+              <code>/Applications/Arto.app</code>.
+            </p>
+          </div>
+        </section>
+
+        <div class="install-divider" />
+
+        {/* Emacs Package */}
+        <section class="install-section">
+          <h2 class="install-section-title">
+            <IconEmacs class="install-icon" />
+            Emacs Package
+          </h2>
+          <p class="install-section-desc">
+            Open Markdown files in Arto directly from Emacs with the official{" "}
+            <a
+              href="https://github.com/arto-app/arto.el"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              arto.el
+            </a>{" "}
+            package.
+          </p>
+
+          <h3 class="install-subsection-title">package-vc (Emacs 29+)</h3>
+          <CodeBlock
+            label="Emacs"
+            code={`(package-vc-install "https://github.com/arto-app/arto.el")`}
+          />
+
+          <h3 class="install-subsection-title-spaced">
+            use-package with vc (Emacs 30+)
+          </h3>
+          <CodeBlock
+            label="init.el"
+            code={`(use-package arto
+  :vc (:url "https://github.com/arto-app/arto.el"))`}
+          />
+
+          <h3 class="install-subsection-title-spaced">Manual</h3>
+          <CodeBlock
+            label="init.el"
+            code={`(add-to-list 'load-path "/path/to/arto.el")
+(require 'arto)`}
+          />
+
+          <div class="install-note-spaced">
+            <p class="install-note-title">
+              <IconInfoCircle size={16} stroke={2} />
+              Requirements
+            </p>
+            <p class="install-note-text">
+              Requires Emacs 27.1+ and Arto v0.15.0+ installed at{" "}
               <code>/Applications/Arto.app</code>.
             </p>
           </div>
