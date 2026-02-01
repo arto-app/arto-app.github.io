@@ -4,6 +4,7 @@ import {
   IconBook,
   IconCheck,
   IconCode,
+  IconEmacs,
   IconKeyboard,
   IconNavigation,
   IconPlug,
@@ -379,6 +380,40 @@ arto ~/Documents/project`}
               </div>
               <p class="grid-item-desc">
                 Open any file or multiple files by specifying paths.
+              </p>
+            </div>
+          </div>
+
+          <h3 class="features-subsection-title-spaced">
+            <IconEmacs class="features-subsection-icon" />
+            Emacs
+          </h3>
+          <p class="features-subsection-desc">
+            The official{" "}
+            <a
+              href="https://github.com/arto-app/arto.el"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              arto.el
+            </a>{" "}
+            package lets you open Markdown files in Arto directly from Emacs.
+          </p>
+          <div class="features-grid">
+            <div class="grid-item">
+              <div class="grid-item-title">
+                <span class="kbd">M-x arto-open</span>
+              </div>
+              <p class="grid-item-desc">
+                Open the current buffer in Arto with a single command.
+              </p>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-title">
+                <span class="kbd">C-u M-x arto-open</span>
+              </div>
+              <p class="grid-item-desc">
+                Prompt for a file to open in Arto.
               </p>
             </div>
           </div>
