@@ -2,7 +2,14 @@
 // SVG data imported from @tabler/icons package
 
 import tablerIcons from "@tabler/icons/tabler-nodes-outline.json";
-import { siHomebrew, siNeovim, siNixos, siRust, siVim } from "simple-icons";
+import {
+  siGnuemacs,
+  siHomebrew,
+  siNeovim,
+  siNixos,
+  siRust,
+  siVim,
+} from "simple-icons";
 
 type IconProps = {
   size?: number;
@@ -121,6 +128,7 @@ function createSimpleIcon(icon: { path: string }) {
   };
 }
 
+export const IconEmacs = createSimpleIcon(siGnuemacs);
 export const IconHomebrew = createSimpleIcon(siHomebrew);
 export const IconNeovim = createSimpleIcon(siNeovim);
 export const IconNix = createSimpleIcon(siNixos);
