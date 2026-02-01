@@ -6,10 +6,14 @@ import {
   IconCode,
   IconKeyboard,
   IconNavigation,
+  IconPlug,
   IconSearch,
   IconSettings,
+  IconTerminal2,
+  IconVim,
   IconWindow,
 } from "../../components/Icons";
+import { CodeBlock } from "../../components/CodeBlock";
 
 export default createRoute((c) => {
   return c.render(
@@ -307,6 +311,74 @@ export default createRoute((c) => {
               <div class="grid-item-title">Preferences</div>
               <p class="grid-item-desc">
                 Configure sidebar, TOC, and other settings to your liking.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations */}
+      <section class="features-section">
+        <div class="features-section-container">
+          <h2 class="features-section-title">
+            <span class="section-icon">
+              <IconPlug size={24} stroke={2} />
+            </span>
+            Integrations
+          </h2>
+
+          <h3 class="features-subsection-title">
+            <IconTerminal2 size={20} stroke={2} />
+            Command Line
+          </h3>
+          <p class="features-subsection-desc">
+            Open files and directories directly from your terminal. Arto uses a
+            single-instance architecture—if it's already running, files are
+            handed off to the existing window seamlessly.
+          </p>
+          <CodeBlock
+            label="Terminal"
+            code={`# Open a file
+arto README.md
+
+# Open multiple files
+arto file1.md file2.md
+
+# Open a directory
+arto ~/Documents/project`}
+          />
+
+          <h3 class="features-subsection-title-spaced">
+            <IconVim class="features-subsection-icon" />
+            Vim / Neovim
+          </h3>
+          <p class="features-subsection-desc">
+            The official{" "}
+            <a
+              href="https://github.com/arto-app/arto.vim"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              arto.vim
+            </a>{" "}
+            plugin lets you preview Markdown files in Arto without leaving your
+            editor.
+          </p>
+          <div class="features-grid">
+            <div class="grid-item">
+              <div class="grid-item-title">
+                <span class="kbd">:Arto</span>
+              </div>
+              <p class="grid-item-desc">
+                Open the current buffer in Arto with a single command.
+              </p>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-title">
+                <span class="kbd">:Arto {"{path}"}</span>
+              </div>
+              <p class="grid-item-desc">
+                Open any file or multiple files by specifying paths.
               </p>
             </div>
           </div>
