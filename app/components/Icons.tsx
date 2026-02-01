@@ -2,7 +2,7 @@
 // SVG data imported from @tabler/icons package
 
 import tablerIcons from "@tabler/icons/tabler-nodes-outline.json";
-import { siHomebrew, siNixos, siRust } from "simple-icons";
+import { siHomebrew, siNeovim, siNixos, siRust, siVim } from "simple-icons";
 
 type IconProps = {
   size?: number;
@@ -94,9 +94,11 @@ export const IconKeyboard = createIcon(icons["keyboard"]);
 export const IconLayoutDashboard = createIcon(icons["layout-dashboard"]);
 export const IconMoon = createIcon(icons["moon"]);
 export const IconNavigation = createIcon(icons["navigation"]);
+export const IconPlug = createIcon(icons["plug"]);
 export const IconSearch = createIcon(icons["search"]);
 export const IconSettings = createIcon(icons["settings"]);
 export const IconSun = createIcon(icons["sun"]);
+export const IconTerminal2 = createIcon(icons["terminal-2"]);
 export const IconWifiOff = createIcon(icons["wifi-off"]);
 export const IconWindow = createIcon(icons["window"]);
 
@@ -120,5 +122,7 @@ function createSimpleIcon(icon: { path: string }) {
 }
 
 export const IconHomebrew = createSimpleIcon(siHomebrew);
+export const IconNeovim = createSimpleIcon(siNeovim);
 export const IconNix = createSimpleIcon(siNixos);
 export const IconRust = createSimpleIcon(siRust);
+export const IconVim = createSimpleIcon(siVim);
