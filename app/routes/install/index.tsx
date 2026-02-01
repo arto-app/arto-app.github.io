@@ -9,6 +9,7 @@ import {
   IconInfoCircle,
   IconNix,
   IconRust,
+  IconVim,
 } from "../../components/Icons";
 import { CodeBlock } from "../../components/CodeBlock";
 
@@ -153,6 +154,48 @@ cd Arto
 pnpm install
 cargo build --release`}
           />
+        </section>
+
+        <div class="install-divider" />
+
+        {/* Vim Plugin */}
+        <section class="install-section">
+          <h2 class="install-section-title">
+            <IconVim class="install-icon" />
+            Vim / Neovim Plugin
+          </h2>
+          <p class="install-section-desc">
+            Open Markdown files in Arto directly from Vim or Neovim with the
+            official{" "}
+            <a
+              href="https://github.com/arto-app/arto.vim"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              arto.vim
+            </a>{" "}
+            plugin.
+          </p>
+
+          <h3 class="install-subsection-title">vim-plug</h3>
+          <CodeBlock label="~/.vimrc" code="Plug 'arto-app/arto.vim'" />
+
+          <h3 class="install-subsection-title-spaced">lazy.nvim</h3>
+          <CodeBlock
+            label="lua"
+            code="{ 'arto-app/arto.vim' }"
+          />
+
+          <div class="install-note-spaced">
+            <p class="install-note-title">
+              <IconInfoCircle size={16} stroke={2} />
+              Requirements
+            </p>
+            <p class="install-note-text">
+              Requires Vim 9.0+ or Neovim 0.10+, and Arto v0.15.0+ installed at{" "}
+              <code>/Applications/Arto.app</code>.
+            </p>
+          </div>
         </section>
 
         <div class="install-divider" />
