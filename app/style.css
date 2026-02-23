@@ -715,6 +715,12 @@ a:hover {
   margin-right: auto;
 }
 
+.features-version-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
 /* Sections */
 .features-section {
   padding: 64px 24px;
@@ -740,10 +746,19 @@ a:hover {
   gap: 12px;
 }
 
+.section-icon,
+.features-subsection-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .section-icon {
-  width: 32px;
-  height: 32px;
+  --icon-size: 32px;
+  width: var(--icon-size);
+  height: var(--icon-size);
   color: var(--link-color);
+  flex: 0 0 var(--icon-size);
 }
 
 /* Feature List */
@@ -843,24 +858,24 @@ a:hover {
 }
 
 /* Feature Subsections */
-.features-subsection-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-color);
-  margin: 0 0 8px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
+.features-subsection-title,
 .features-subsection-title-spaced {
   font-size: 16px;
   font-weight: 600;
   color: var(--text-color);
-  margin: 32px 0 8px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 8px;
+  line-height: 1.3;
+}
+
+.features-subsection-title {
+  margin: 0 0 8px 0;
+}
+
+.features-subsection-title-spaced {
+  margin: 32px 0 8px;
 }
 
 .features-subsection-desc {
@@ -870,9 +885,18 @@ a:hover {
   line-height: 1.6;
 }
 
-.features-subsection-icon {
-  width: 20px;
-  height: 20px;
+.features-subsection-icon-wrap {
+  --icon-size: 20px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  flex: 0 0 var(--icon-size);
+}
+
+.section-icon svg,
+.features-subsection-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* Keyboard */
@@ -1135,4 +1159,105 @@ a:hover {
 /* Icon color */
 .install-icon {
   color: var(--link-color);
+}
+
+/* ===== Version Tracking Page ===== */
+
+.version-card {
+  padding: 20px;
+  background: var(--header-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.version-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.version-card-detail {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.version-card-note {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.version-card code,
+.version-log-commit code {
+  font-family:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  padding: 2px 6px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  word-break: break-all;
+}
+
+.version-log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.version-log-item {
+  padding: 20px;
+  background: var(--header-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.version-log-meta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--link-color);
+  margin-bottom: 8px;
+}
+
+.version-log-summary {
+  font-size: 15px;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.version-log-commit {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.version-log-changes {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.version-log-changes li {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 840px) {
+  .nav-container {
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
 }

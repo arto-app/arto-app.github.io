@@ -10,6 +10,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { href: basePath("/"), label: "Home", id: "home" },
   { href: basePath("/features"), label: "Features", id: "features" },
+  { href: basePath("/versions"), label: "Versions", id: "versions" },
   { href: basePath("/install"), label: "Install", id: "install" },
 ];
 

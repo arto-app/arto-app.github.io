@@ -1,14 +1,18 @@
 import type { Child } from "hono/jsx";
 import { createRoute } from "honox/factory";
+import { artoReferenceCurrent } from "../lib/arto-version";
 import { basePath } from "../lib/path";
 import {
   IconBolt,
   IconBook,
   IconBrandGithub,
+  IconCode,
   IconDownload,
-  IconLayoutDashboard,
+  IconKeyboard,
   IconMoon,
+  IconTerminal2,
   IconWifiOff,
+  IconWindow,
 } from "../components/Icons";
 import { CodeBlock } from "../components/CodeBlock";
 
@@ -91,8 +95,9 @@ export default createRoute((c) => {
         <div class="section-container">
           <h2 class="section-title">Why Arto?</h2>
           <p class="section-subtitle">
-            Most Markdown tools focus on writing. Arto focuses on reading—giving
-            you a distraction-free, beautiful experience.
+            Arto has evolved beyond a basic Markdown viewer. It combines
+            faithful rendering, powerful navigation, flexible automation, and
+            refined reading workflows in one native app.
           </p>
           <div class="features-grid">
             <FeatureCard
@@ -113,25 +118,34 @@ export default createRoute((c) => {
               desc="Built with Rust for blazing-fast performance. Opens instantly, renders quickly, and uses minimal system resources."
             />
             <FeatureCard
-              icon={<IconWifiOff class="feature-icon" size={32} stroke={1.5} />}
-              title="Offline-First"
-              desc="Works completely offline. Your documents stay on your machine, private and always accessible."
+              icon={<IconWindow class="feature-icon" size={32} stroke={1.5} />}
+              title="Dedicated Viewer Windows"
+              desc="Open Mermaid diagrams, math expressions, and images in focused viewer windows with zoom/pan interactions."
             />
             <FeatureCard
-              icon={
-                <IconLayoutDashboard
-                  class="feature-icon"
-                  size={32}
-                  stroke={1.5}
-                />
-              }
-              title="Mermaid Diagrams"
-              desc="Interactive Mermaid diagrams with zoom, pan, and copy-as-image. Visualize your documentation beautifully."
+              icon={<IconCode class="feature-icon" size={32} stroke={1.5} />}
+              title="Smart Copy Workflows"
+              desc="Use context-aware copy actions, including Copy As... variants for text, code, tables, and rendered blocks."
+            />
+            <FeatureCard
+              icon={<IconKeyboard class="feature-icon" size={32} stroke={1.5} />}
+              title="Custom Keybindings"
+              desc="Edit shortcuts and choose preset mappings (Default, Vim, Emacs) to match your muscle memory."
+            />
+            <FeatureCard
+              icon={<IconTerminal2 class="feature-icon" size={32} stroke={1.5} />}
+              title="Powerful CLI Integration"
+              desc="Open files/directories with single-instance routing and window control options like --open and --directory."
             />
             <FeatureCard
               icon={<IconMoon class="feature-icon" size={32} stroke={1.5} />}
-              title="Dark Mode"
-              desc="Beautiful dark theme that syncs with your system preferences. Easy on the eyes, day or night."
+              title="Polished Reading Environment"
+              desc="Dark mode, zoom controls, bookmarks, pinned tabs, and persistent search highlights improve long-form reading."
+            />
+            <FeatureCard
+              icon={<IconWifiOff class="feature-icon" size={32} stroke={1.5} />}
+              title="Offline-First & Private"
+              desc="Works fully offline and keeps your documents local, so your reading workflow remains fast and private."
             />
           </div>
         </div>
@@ -188,6 +202,22 @@ export default createRoute((c) => {
             code={`brew install --cask arto-app/tap/arto
 xattr -dr com.apple.quarantine /Applications/Arto.app`}
           />
+        </div>
+      </section>
+
+      {/* Documentation Status */}
+      <section class="section">
+        <div class="section-container">
+          <h2 class="section-title">Documentation Status</h2>
+          <p class="section-subtitle">
+            This website currently tracks Arto {artoReferenceCurrent.version}.
+            See detailed sync records and migration notes.
+          </p>
+          <div style={{ textAlign: "center" }}>
+            <a href={basePath("/versions")} class="btn-secondary">
+              View Version Tracking
+            </a>
+          </div>
         </div>
       </section>
     </>,

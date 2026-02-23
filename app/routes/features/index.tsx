@@ -1,4 +1,5 @@
 import { createRoute } from "honox/factory";
+import { artoReferenceCurrent } from "../../lib/arto-version";
 import { basePath } from "../../lib/path";
 import {
   IconBook,
@@ -25,16 +26,20 @@ export default createRoute((c) => {
           Everything you need for a premium Markdown reading experience, nothing
           you don't.
         </p>
+        <p class="features-version-note">
+          Documentation target: <strong>{artoReferenceCurrent.version}</strong>{" "}
+          ({artoReferenceCurrent.date})
+        </p>
       </header>
 
-      {/* Reading Experience */}
+      {/* Core Reading & Rendering */}
       <section class="features-section">
         <div class="features-section-container">
           <h2 class="features-section-title">
             <span class="section-icon">
               <IconBook size={24} stroke={2} />
             </span>
-            Reading Experience
+            Core Reading & Rendering
           </h2>
           <div class="feature-list">
             <FeatureItem
@@ -56,6 +61,10 @@ export default createRoute((c) => {
             <FeatureItem
               name="Auto-Reload"
               desc="Documents automatically refresh when files change on disk, keeping your view up-to-date."
+            />
+            <FeatureItem
+              name="Auto Link URLs (Optional)"
+              desc="Optionally preprocess bare URLs into CommonMark autolinks while preserving your source files."
             />
           </div>
           <div class="feature-demo-grid">
@@ -79,14 +88,14 @@ export default createRoute((c) => {
         </div>
       </section>
 
-      {/* Code & Diagrams */}
+      {/* Special Blocks & Viewer Windows */}
       <section class="features-section">
         <div class="features-section-container">
           <h2 class="features-section-title">
             <span class="section-icon">
               <IconCode size={24} stroke={2} />
             </span>
-            Code & Diagrams
+            Special Blocks & Viewer Windows
           </h2>
           <div class="feature-list">
             <FeatureItem
@@ -95,11 +104,15 @@ export default createRoute((c) => {
             />
             <FeatureItem
               name="Mermaid Diagrams"
-              desc="Interactive Mermaid diagrams with zoom, pan, and the ability to copy diagrams as images."
+              desc="Render Mermaid diagrams inline, then open them in dedicated viewer windows with zoom/pan and image export."
             />
             <FeatureItem
               name="KaTeX Math"
-              desc="Render mathematical expressions beautifully with KaTeX support for inline and block math."
+              desc="Render mathematical expressions inline and open math blocks in dedicated viewer windows for focused inspection."
+            />
+            <FeatureItem
+              name="Image Viewer Window"
+              desc="Open images in a dedicated viewer window with fit/zoom support for large diagrams and screenshots."
             />
           </div>
           <div class="feature-demo-grid">
@@ -206,6 +219,17 @@ export default createRoute((c) => {
               </p>
             </div>
             <div class="grid-item">
+              <div class="grid-item-title">
+                <span class="kbd">⌘G</span>
+                <span class="kbd">⇧⌘G</span>
+                Find Next / Previous
+              </div>
+              <p class="grid-item-desc">
+                Jump through matches quickly with dedicated next/previous
+                shortcuts.
+              </p>
+            </div>
+            <div class="grid-item">
               <div class="grid-item-title">Pinned Search</div>
               <p class="grid-item-desc">
                 Persistent multi-color highlighting that stays visible as you
@@ -234,7 +258,7 @@ export default createRoute((c) => {
         </div>
       </section>
 
-      {/* Window Management */}
+      {/* Window & Tab Management */}
       <section class="features-section">
         <div class="features-section-container">
           <h2 class="features-section-title">
@@ -253,21 +277,29 @@ export default createRoute((c) => {
             <div class="grid-item">
               <div class="grid-item-title">Multi-Window</div>
               <p class="grid-item-desc">
-                Open documents in new windows, including separate windows for
-                diagrams.
+                Open documents in multiple windows and use separate viewer
+                windows for Mermaid, math, and images.
               </p>
             </div>
             <div class="grid-item">
-              <div class="grid-item-title">Drag & Drop</div>
+              <div class="grid-item-title">Pinned Tabs</div>
               <p class="grid-item-desc">
-                Drop files onto Arto to open them, or drag tabs between windows.
+                Pin important tabs and keep them while managing close-all or
+                close-others workflows.
               </p>
             </div>
             <div class="grid-item">
-              <div class="grid-item-title">Context Menus</div>
+              <div class="grid-item-title">Cross-Window Tabs</div>
               <p class="grid-item-desc">
-                Right-click menus for tabs, sidebar, and content with useful
-                actions.
+                Drag tabs between windows and reorganize your reading workspace
+                without reopening files.
+              </p>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-title">Drag & Drop Open</div>
+              <p class="grid-item-desc">
+                Drop files onto Arto to open them instantly without leaving your
+                current flow.
               </p>
             </div>
           </div>
@@ -305,7 +337,8 @@ export default createRoute((c) => {
                 Zoom
               </div>
               <p class="grid-item-desc">
-                Adjust text size with keyboard shortcuts or trackpad gestures.
+                Adjust content zoom with keyboard shortcuts and use dedicated
+                zoom preferences for side panels.
               </p>
             </div>
             <div class="grid-item">
@@ -314,6 +347,50 @@ export default createRoute((c) => {
                 Configure sidebar, TOC, and other settings to your liking.
               </p>
             </div>
+            <div class="grid-item">
+              <div class="grid-item-title">Custom Keybindings & Presets</div>
+              <p class="grid-item-desc">
+                Edit shortcuts and switch between Default, Vim, and Emacs-style
+                preset mappings.
+              </p>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-title">File Open Behavior</div>
+              <p class="grid-item-desc">
+                Choose whether file opens reuse focused windows, current screen
+                windows, or always create a new window.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Workflow Improvements */}
+      <section class="features-section">
+        <div class="features-section-container">
+          <h2 class="features-section-title">
+            <span class="section-icon">
+              <IconCode size={24} stroke={2} />
+            </span>
+            Workflow Improvements
+          </h2>
+          <div class="feature-list">
+            <FeatureItem
+              name="Smart Context Menu"
+              desc="Context-aware actions adapt to text, code, tables, images, and special blocks."
+            />
+            <FeatureItem
+              name="Copy As... Actions"
+              desc="Use structured copy options for plain text, markdown snippets, CSV/TSV table exports, and source paths."
+            />
+            <FeatureItem
+              name="Copy / Save Rendered Blocks"
+              desc="Copy or save Mermaid, math, and image content as rendered images directly from the context menu."
+            />
+            <FeatureItem
+              name="Source-Aware Utilities"
+              desc="Context actions can reference source lines and file paths for quick jump/copy workflows."
+            />
           </div>
         </div>
       </section>
@@ -329,7 +406,9 @@ export default createRoute((c) => {
           </h2>
 
           <h3 class="features-subsection-title">
-            <IconTerminal2 size={20} stroke={2} />
+            <span class="features-subsection-icon-wrap">
+              <IconTerminal2 size={20} stroke={2} />
+            </span>
             Command Line
           </h3>
           <p class="features-subsection-desc">
@@ -345,12 +424,23 @@ arto README.md
 # Open multiple files
 arto file1.md file2.md
 
+# Open in a new window
+arto --open=new README.md
+
+# Open in a window on current screen
+arto --open=screen README.md
+
 # Open a directory
+arto --directory=~/Documents/project README.md
+
+# Directory argument also sets explorer root
 arto ~/Documents/project`}
           />
 
           <h3 class="features-subsection-title-spaced">
-            <IconVim class="features-subsection-icon" />
+            <span class="features-subsection-icon-wrap">
+              <IconVim />
+            </span>
             Vim / Neovim
           </h3>
           <p class="features-subsection-desc">
@@ -385,7 +475,9 @@ arto ~/Documents/project`}
           </div>
 
           <h3 class="features-subsection-title-spaced">
-            <IconEmacs class="features-subsection-icon" />
+            <span class="features-subsection-icon-wrap">
+              <IconEmacs />
+            </span>
             Emacs
           </h3>
           <p class="features-subsection-desc">
@@ -432,8 +524,11 @@ arto ~/Documents/project`}
           <div class="features-grid">
             <ShortcutItem keys={["⌘", "O"]} desc="Open file" />
             <ShortcutItem keys={["⌘", "F"]} desc="Find in page" />
+            <ShortcutItem keys={["⌘", "G"]} desc="Find next" />
+            <ShortcutItem keys={["⇧", "⌘", "G"]} desc="Find previous" />
             <ShortcutItem keys={["⌘", "T"]} desc="New tab" />
             <ShortcutItem keys={["⌘", "W"]} desc="Close tab" />
+            <ShortcutItem keys={["⌥", "⌘", "P"]} desc="Toggle tab pin" />
             <ShortcutItem keys={["⌘", "+"]} desc="Zoom in" />
             <ShortcutItem keys={["⌘", "-"]} desc="Zoom out" />
             <ShortcutItem keys={["⌘", "0"]} desc="Reset zoom" />
@@ -441,6 +536,7 @@ arto ~/Documents/project`}
             <ShortcutItem keys={["⌘", "["]} desc="Navigate back" />
             <ShortcutItem keys={["⌘", "]"]} desc="Navigate forward" />
             <ShortcutItem keys={["⌘", "B"]} desc="Toggle sidebar" />
+            <ShortcutItem keys={["⇧", "⌘", "B"]} desc="Toggle right sidebar" />
             <ShortcutItem keys={["⌘", "R"]} desc="Reload document" />
           </div>
         </div>
