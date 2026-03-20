@@ -21,13 +21,24 @@ export const artoReferenceBaseline: ArtoReference = {
 };
 
 export const artoReferenceCurrent: ArtoReference = {
-  version: "v0.24.1",
-  commit: "b6580b93da86db17ce028daf50491ef7e060f9a6",
-  date: "2026-02-23",
+  version: "v0.25.0",
+  commit: "46edb19cc463202b79e83f775c37864cd4128dd8",
+  date: "2026-03-20",
   note: "Latest Arto repository state used for this website refresh.",
 };
 
 export const artoSyncLog: ArtoSyncLogEntry[] = [
+  {
+    date: "2026-03-20",
+    targetVersion: "v0.25.0",
+    targetCommit: "46edb19cc463202b79e83f775c37864cd4128dd8",
+    summary: "Update website content from Arto v0.24.1 to v0.25.0.",
+    changes: [
+      "Added hover-to-reveal sidebars with pin-to-dock support.",
+      "Added Copy Table As Markdown to context menu copy workflows.",
+      "Updated cross-platform support note to reflect initial Linux platform support (v0.24.2).",
+    ],
+  },
   {
     date: "2026-02-23",
     targetVersion: "v0.24.1",

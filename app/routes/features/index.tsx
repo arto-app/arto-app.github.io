@@ -158,7 +158,7 @@ export default createRoute((c) => {
           <div class="feature-list">
             <FeatureItem
               name="File Explorer Sidebar"
-              desc="Built-in file explorer with a resizable sidebar for browsing your Markdown files."
+              desc="Built-in file explorer with hover-to-reveal sidebars that auto-hide when not in use, and pin-to-dock to keep them visible."
             />
             <FeatureItem
               name="Quick Access Bookmarks"
@@ -381,7 +381,7 @@ export default createRoute((c) => {
             />
             <FeatureItem
               name="Copy As... Actions"
-              desc="Use structured copy options for plain text, markdown snippets, CSV/TSV table exports, and source paths."
+              desc="Use structured copy options for plain text, markdown snippets, CSV/TSV/Markdown table exports, and source paths."
             />
             <FeatureItem
               name="Copy / Save Rendered Blocks"

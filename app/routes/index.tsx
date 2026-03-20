@@ -145,7 +145,7 @@ export default createRoute((c) => {
             <FeatureCard
               icon={<IconWifiOff class="feature-icon" size={32} stroke={1.5} />}
               title="Offline-First & Private"
-              desc="Works fully offline and keeps your documents local, so your reading workflow remains fast and private."
+              desc="Works fully offline on macOS and Linux, keeping your documents local for a fast and private workflow."
             />
           </div>
         </div>

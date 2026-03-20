@@ -281,8 +281,8 @@ cargo build --release`}
               Cross-Platform Support
             </p>
             <p class="install-note-text">
-              Arto is currently macOS-only, but cross-platform support (Windows,
-              Linux) is planned for future releases.
+              Arto runs on macOS natively. Initial Linux support was added in
+              v0.24.2 via Nix. Windows support is planned for future releases.
             </p>
           </div>
         </section>
