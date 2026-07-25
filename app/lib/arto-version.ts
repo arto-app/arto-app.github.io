@@ -21,13 +21,25 @@ export const artoReferenceBaseline: ArtoReference = {
 };
 
 export const artoReferenceCurrent: ArtoReference = {
-  version: "v0.25.0",
-  commit: "46edb19cc463202b79e83f775c37864cd4128dd8",
-  date: "2026-03-20",
+  version: "v0.30.0",
+  commit: "75e9ca89aa992803ade1f68a2952c42052a1b09c",
+  date: "2026-07-25",
   note: "Latest Arto repository state used for this website refresh.",
 };
 
 export const artoSyncLog: ArtoSyncLogEntry[] = [
+  {
+    date: "2026-07-25",
+    targetVersion: "v0.30.0",
+    targetCommit: "75e9ca89aa992803ade1f68a2952c42052a1b09c",
+    summary: "Update website content from Arto v0.25.0 to v0.30.0.",
+    changes: [
+      "Added macOS integration section: Quick Look preview and Finder preview pane for rendered Markdown (v0.30.0).",
+      "Documented Print / PDF export with A4 print stylesheet (v0.27.0).",
+      "Added full-width content mode toggle to customization options (v0.28.0).",
+      "Clarified keybindings: native menu shortcuts are now editable and split from the in-window engine keybindings (v0.29.0).",
+    ],
+  },
   {
     date: "2026-03-20",
     targetVersion: "v0.25.0",

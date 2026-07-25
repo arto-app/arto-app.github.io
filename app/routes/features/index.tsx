@@ -3,6 +3,7 @@ import { artoReferenceCurrent } from "../../lib/arto-version";
 import { basePath } from "../../lib/path";
 import {
   IconBook,
+  IconBrandApple,
   IconCheck,
   IconCode,
   IconEmacs,
@@ -350,8 +351,8 @@ export default createRoute((c) => {
             <div class="grid-item">
               <div class="grid-item-title">Custom Keybindings & Presets</div>
               <p class="grid-item-desc">
-                Edit shortcuts and switch between Default, Vim, and Emacs-style
-                preset mappings.
+                Edit both native menu shortcuts and in-window keybindings, and
+                switch between Default, Vim, and Emacs-style preset mappings.
               </p>
             </div>
             <div class="grid-item">
@@ -359,6 +360,20 @@ export default createRoute((c) => {
               <p class="grid-item-desc">
                 Choose whether file opens reuse focused windows, current screen
                 windows, or always create a new window.
+              </p>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-title">Full-Width Content Mode</div>
+              <p class="grid-item-desc">
+                Toggle a full-width layout to let content span the whole window
+                instead of the centered reading column.
+              </p>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-title">Print / PDF Export</div>
+              <p class="grid-item-desc">
+                Print the current document or export it to PDF with a dedicated
+                A4 print stylesheet that renders in light theme.
               </p>
             </div>
           </div>
@@ -506,6 +521,37 @@ arto ~/Documents/project`}
               </div>
               <p class="grid-item-desc">
                 Prompt for a file to open in Arto.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* macOS Integration */}
+      <section class="features-section">
+        <div class="features-section-container">
+          <h2 class="features-section-title">
+            <span class="section-icon">
+              <IconBrandApple size={24} stroke={2} />
+            </span>
+            macOS Integration
+          </h2>
+          <div class="features-grid">
+            <div class="grid-item">
+              <div class="grid-item-title">
+                <span class="kbd">Space</span>
+                Quick Look Preview
+              </div>
+              <p class="grid-item-desc">
+                Press Space on any Markdown file in Finder to get a fully
+                rendered preview—no need to open the app first.
+              </p>
+            </div>
+            <div class="grid-item">
+              <div class="grid-item-title">Finder Preview Pane</div>
+              <p class="grid-item-desc">
+                Markdown files display rendered HTML directly in Finder's
+                sidebar preview pane.
               </p>
             </div>
           </div>
