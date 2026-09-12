@@ -95,6 +95,46 @@ qlmanage -r && qlmanage -r cache`}
       </section>
 
       <section class="doc-section">
+        <h2 class="doc-section-title">Windows</h2>
+        <p class="doc-p">
+          Download the installer for your architecture from the{" "}
+          <a href={RELEASES} target="_blank" rel="noopener noreferrer">
+            releases page
+          </a>{" "}
+          and run it. It puts Arto on the Start menu and offers it for{" "}
+          <code class="doc-code">.md</code>,{" "}
+          <code class="doc-code">.markdown</code> and{" "}
+          <code class="doc-code">.txt</code> files — in a file's{" "}
+          <strong>Open with</strong> menu, in the “Choose another app” dialog
+          and under Settings → Apps → Default apps. Whatever opens those files
+          today keeps doing so until you say otherwise.
+        </p>
+        <div class="figure">
+          <CodeBlock
+            label="Releases"
+            code="Arto_<version>_<arch>-setup.exe"
+          />
+        </div>
+        <p class="doc-p">
+          Both x86-64 and ARM are built. If you would rather not install
+          anything, the same release carries{" "}
+          <code class="doc-code">arto-windows-x86_64.exe</code> and{" "}
+          <code class="doc-code">arto-windows-aarch64.exe</code> — one
+          self-contained executable that runs from wherever you put it. See{" "}
+          <a href="#a-single-binary">A single binary</a> for what that leaves
+          out.
+        </p>
+        <div class="callout callout-warn">
+          <p class="callout-title">Experimental</p>
+          <p>
+            CI builds and tests Windows on every change, and a release carries
+            these artifacts when that build succeeds — but almost nobody runs
+            Arto here, so expect rough edges the other platforms do not have.
+          </p>
+        </div>
+      </section>
+
+      <section class="doc-section" id="a-single-binary">
         <h2 class="doc-section-title">A single binary</h2>
         <p class="doc-p">
           Every release also carries the application as one executable, for
