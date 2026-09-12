@@ -1,620 +1,322 @@
+import type { Child } from "hono/jsx";
 import { createRoute } from "honox/factory";
 import { artoReferenceCurrent } from "../../lib/arto-version";
-import { basePath } from "../../lib/path";
-import {
-  IconBook,
-  IconBrandApple,
-  IconCheck,
-  IconCode,
-  IconEmacs,
-  IconKeyboard,
-  IconNavigation,
-  IconPlug,
-  IconSearch,
-  IconSettings,
-  IconTerminal2,
-  IconVim,
-  IconWindow,
-} from "../../components/Icons";
-import { CodeBlock } from "../../components/CodeBlock";
+import { ShotFigure } from "../../components/Figure";
+
+type TermProps = {
+  name: string;
+  children: Child;
+};
+
+function Term({ name, children }: TermProps) {
+  return (
+    <div>
+      <p class="term-name">{name}</p>
+      <p class="term-desc">{children}</p>
+    </div>
+  );
+}
 
 export default createRoute((c) => {
   return c.render(
-    <>
-      <header class="features-header">
-        <h1 class="features-title">Features</h1>
-        <p class="features-subtitle">
-          Everything you need for a premium Markdown reading experience, nothing
-          you don't.
+    <article class="doc">
+      <header class="doc-masthead">
+        <span class="doc-eyebrow">Features</span>
+        <h1 class="doc-title">Everything it does</h1>
+        <p class="doc-lead">
+          The whole surface of the application, grouped the way you meet it:
+          what it renders, how you get around, how you find things, what a
+          window is, and how it fits into the rest of your machine.
         </p>
-        <p class="features-version-note">
-          Documentation target: <strong>{artoReferenceCurrent.version}</strong>{" "}
-          ({artoReferenceCurrent.date})
+        <p class="doc-actions-note">
+          Current as of {artoReferenceCurrent.version}.
         </p>
       </header>
 
-      {/* Core Reading & Rendering */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconBook size={24} stroke={2} />
-            </span>
-            Core Reading & Rendering
-          </h2>
-          <div class="feature-list">
-            <FeatureItem
-              name="GitHub-Style Rendering"
-              desc="Faithful reproduction of GitHub's Markdown rendering, so your documents look exactly as they would on GitHub."
-            />
-            <FeatureItem
-              name="Extended Syntax Support"
-              desc="Tables, task lists, strikethrough, autolinks, and all the GitHub Flavored Markdown extensions you rely on."
-            />
-            <FeatureItem
-              name="GitHub Alerts"
-              desc="Support for NOTE, TIP, IMPORTANT, WARNING, and CAUTION callouts with appropriate styling."
-            />
-            <FeatureItem
-              name="YAML Frontmatter"
-              desc="Beautifully styled, collapsible frontmatter tables that display your document metadata elegantly."
-            />
-            <FeatureItem
-              name="Auto-Reload"
-              desc="Documents automatically refresh when files change on disk, keeping your view up-to-date."
-            />
-            <FeatureItem
-              name="Auto Link URLs (Optional)"
-              desc="Optionally preprocess bare URLs into CommonMark autolinks while preserving your source files."
-            />
-          </div>
-          <div class="feature-demo-grid">
-            <div class="feature-demo">
-              <img
-                src={basePath("/images/feature-rendering.png")}
-                alt="GitHub-style Markdown rendering"
-                class="feature-demo-img"
-              />
-              <p class="feature-demo-caption">GitHub-Style Rendering</p>
-            </div>
-            <div class="feature-demo">
-              <img
-                src={basePath("/images/feature-alerts.png")}
-                alt="GitHub Alerts support"
-                class="feature-demo-img"
-              />
-              <p class="feature-demo-caption">GitHub Alerts</p>
-            </div>
-          </div>
+      <section class="doc-section">
+        <h2 class="doc-section-title">Reading</h2>
+        <p class="doc-section-lead">
+          GitHub's dialect, rendered by ox-content — the same engine behind{" "}
+          <code class="doc-code">arto page</code> and the Quick Look preview.
+        </p>
+        <div class="term-list">
+          <Term name="GitHub-accurate rendering">
+            Headings, lists, tables, task lists, footnotes, strikethrough,
+            autolinks and heading slugs, drawn with GitHub's own stylesheet so a
+            document looks the way it will on the web.
+          </Term>
+          <Term name="GitHub alerts">
+            <code class="doc-code">NOTE</code>,{" "}
+            <code class="doc-code">TIP</code>,{" "}
+            <code class="doc-code">IMPORTANT</code>,{" "}
+            <code class="doc-code">WARNING</code> and{" "}
+            <code class="doc-code">CAUTION</code>, each with its own colour and
+            glyph.
+          </Term>
+          <Term name="YAML frontmatter">
+            Metadata at the top of a file becomes a table you can collapse,
+            rather than a wall of text before the document starts.
+          </Term>
+          <Term name="Syntax highlighting">
+            Code blocks arrive highlighted, with a copy button in the corner.
+          </Term>
+          <Term name="Auto-reload">
+            A file that changes on disk re-renders in place, so a document being
+            edited elsewhere stays current without a keystroke.
+          </Term>
+          <Term name="Offline by construction">
+            The stylesheet, the highlighter and the diagram and formula code are
+            compiled into the binary. The renderer never reaches the network.
+          </Term>
+          <Term name="What the renderer reads">
+            Preferences decides which extensions are in force: math, wiki links,
+            superscript and subscript, definition lists, heading attributes and
+            permalinks, smart punctuation, CJK emphasis, bare URLs as links, and
+            whether raw HTML is filtered, kept or dropped.
+          </Term>
         </div>
+        <ShotFigure
+          name="rendering"
+          alt="Math, highlighted code and GitHub alerts rendered in Arto"
+        />
       </section>
 
-      {/* Special Blocks & Viewer Windows */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconCode size={24} stroke={2} />
-            </span>
-            Special Blocks & Viewer Windows
-          </h2>
-          <div class="feature-list">
-            <FeatureItem
-              name="Syntax Highlighting"
-              desc="Beautiful code highlighting powered by highlight.js with a convenient copy button on every code block."
-            />
-            <FeatureItem
-              name="Mermaid Diagrams"
-              desc="Render Mermaid diagrams inline, then open them in dedicated viewer windows with zoom/pan and image export."
-            />
-            <FeatureItem
-              name="KaTeX Math"
-              desc="Render mathematical expressions inline and open math blocks in dedicated viewer windows for focused inspection."
-            />
-            <FeatureItem
-              name="Image Viewer Window"
-              desc="Open images in a dedicated viewer window with fit/zoom support for large diagrams and screenshots."
-            />
-          </div>
-          <div class="feature-demo-grid">
-            <div class="feature-demo">
-              <img
-                src={basePath("/images/feature-syntax.png")}
-                alt="Syntax highlighting"
-                class="feature-demo-img"
-              />
-              <p class="feature-demo-caption">Syntax Highlighting</p>
-            </div>
-            <div class="feature-demo">
-              <img
-                src={basePath("/images/feature-katex.png")}
-                alt="KaTeX math rendering"
-                class="feature-demo-img"
-              />
-              <p class="feature-demo-caption">KaTeX Math</p>
-            </div>
-          </div>
-          <div class="feature-demo">
-            <img
-              src={basePath("/images/feature-mermaid.gif")}
-              alt="Mermaid diagram interaction demo"
-              class="feature-demo-img"
-            />
-            <p class="feature-demo-caption">
-              Interactive Mermaid diagrams with zoom and pan
-            </p>
-          </div>
+      <section class="doc-section">
+        <h2 class="doc-section-title">Getting around</h2>
+        <p class="doc-section-lead">
+          The welcome page, the panel, the contents gutter, and the links in the
+          document itself.
+        </p>
+        <div class="term-list">
+          <Term name="The welcome page">
+            What a window shows with nothing open: the folders you have starred,
+            the documents you have starred, and what you have read, grouped
+            under today, yesterday and this week.
+          </Term>
+          <Term name="One panel, three faces">
+            A file explorer, the reading history and your bookmarks, in one
+            panel — <kbd>⌘1</kbd>, <kbd>⌘2</kbd>, <kbd>⌘3</kbd> between them and{" "}
+            <kbd>⌘B</kbd> to show it. It reveals on hover and can be pinned open.
+          </Term>
+          <Term name="Several roots at once">
+            The explorer holds more than one folder, so the project you are
+            reading and the notes you are reading it against sit in the same
+            tree.
+          </Term>
+          <Term name="The contents gutter">
+            A ruler in the page's own margin marks every heading; <kbd>⌘J</kbd>{" "}
+            opens it into a list you can walk with the arrow keys.
+          </Term>
+          <Term name="Links between documents">
+            A relative link opens the document it names, and a fragment scrolls
+            to the heading it points at. <kbd>⌘[</kbd> and <kbd>⌘]</kbd> move
+            back and forward across the trail.
+          </Term>
+          <Term name="Where you left off">
+            Reopening a document puts you back at the place you stopped reading,
+            not at the top.
+          </Term>
         </div>
-      </section>
-
-      {/* Navigation */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconNavigation size={24} stroke={2} />
-            </span>
-            Navigation & Organization
-          </h2>
-          <div class="feature-list">
-            <FeatureItem
-              name="File Explorer Sidebar"
-              desc="Built-in file explorer with hover-to-reveal sidebars that auto-hide when not in use, and pin-to-dock to keep them visible."
-            />
-            <FeatureItem
-              name="Quick Access Bookmarks"
-              desc="Pin frequently used files and directories for instant access."
-            />
-            <FeatureItem
-              name="Table of Contents"
-              desc="Automatic TOC panel generated from your document's headings for easy navigation."
-            />
-            <FeatureItem
-              name="Directory History"
-              desc="Navigate back and forward through your browsing history with keyboard shortcuts."
-            />
-            <FeatureItem
-              name="Live Link Navigation"
-              desc="Click links to other Markdown documents and navigate seamlessly between files."
-            />
-          </div>
-          <div class="feature-demo-grid">
-            <div class="feature-demo">
-              <img
-                src={basePath("/images/feature-sidebar.gif")}
-                alt="File explorer sidebar demo"
-                class="feature-demo-img"
-              />
-              <p class="feature-demo-caption">File Explorer Sidebar</p>
-            </div>
-            <div class="feature-demo">
-              <img
-                src={basePath("/images/feature-toc.png")}
-                alt="Table of contents panel"
-                class="feature-demo-img"
-              />
-              <p class="feature-demo-caption">Table of Contents Panel</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Search */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconSearch size={24} stroke={2} />
-            </span>
-            Search & Discovery
-          </h2>
-          <div class="features-grid">
-            <div class="grid-item">
-              <div class="grid-item-title">
-                <span class="kbd">⌘F</span>
-                Find in Page
-              </div>
-              <p class="grid-item-desc">
-                Quick search within the current document with highlight
-                navigation.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">
-                <span class="kbd">⌘G</span>
-                <span class="kbd">⇧⌘G</span>
-                Find Next / Previous
-              </div>
-              <p class="grid-item-desc">
-                Jump through matches quickly with dedicated next/previous
-                shortcuts.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Pinned Search</div>
-              <p class="grid-item-desc">
-                Persistent multi-color highlighting that stays visible as you
-                navigate.
-              </p>
-            </div>
-          </div>
-          <div class="feature-demo-grid">
-            <div class="feature-demo">
-              <img
-                src={basePath("/images/feature-search.png")}
-                alt="Find in page"
-                class="feature-demo-img"
-              />
-              <p class="feature-demo-caption">Find in Page</p>
-            </div>
-            <div class="feature-demo">
-              <img
-                src={basePath("/images/feature-pinned.png")}
-                alt="Pinned search with multi-color highlights"
-                class="feature-demo-img"
-              />
-              <p class="feature-demo-caption">Pinned Search</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Window & Tab Management */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconWindow size={24} stroke={2} />
-            </span>
-            Window & Tab Management
-          </h2>
-          <div class="features-grid">
-            <div class="grid-item">
-              <div class="grid-item-title">Tab Support</div>
-              <p class="grid-item-desc">
-                Open multiple documents in tabs for easy switching.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Multi-Window</div>
-              <p class="grid-item-desc">
-                Open documents in multiple windows and use separate viewer
-                windows for Mermaid, math, and images.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Pinned Tabs</div>
-              <p class="grid-item-desc">
-                Pin important tabs and keep them while managing close-all or
-                close-others workflows.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Cross-Window Tabs</div>
-              <p class="grid-item-desc">
-                Drag tabs between windows and reorganize your reading workspace
-                without reopening files.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Drag & Drop Open</div>
-              <p class="grid-item-desc">
-                Drop files onto Arto to open them instantly without leaving your
-                current flow.
-              </p>
-            </div>
-          </div>
-          <div class="feature-demo">
-            <img
-              src={basePath("/images/feature-multiwindow.gif")}
-              alt="Multi-window support"
-              class="feature-demo-img"
-            />
-            <p class="feature-demo-caption">Multi-Window Support</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Customization */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconSettings size={24} stroke={2} />
-            </span>
-            Customization
-          </h2>
-          <div class="features-grid">
-            <div class="grid-item">
-              <div class="grid-item-title">Dark Mode</div>
-              <p class="grid-item-desc">
-                Beautiful dark theme that syncs with your system preferences.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">
-                <span class="kbd">⌘+</span>
-                <span class="kbd">⌘-</span>
-                Zoom
-              </div>
-              <p class="grid-item-desc">
-                Adjust content zoom with keyboard shortcuts and use dedicated
-                zoom preferences for side panels.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Preferences</div>
-              <p class="grid-item-desc">
-                Configure sidebar, TOC, and other settings to your liking.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Custom Keybindings & Presets</div>
-              <p class="grid-item-desc">
-                Edit both native menu shortcuts and in-window keybindings, and
-                switch between Default, Vim, and Emacs-style preset mappings.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">File Open Behavior</div>
-              <p class="grid-item-desc">
-                Choose whether file opens reuse focused windows, current screen
-                windows, or always create a new window.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Full-Width Content Mode</div>
-              <p class="grid-item-desc">
-                Toggle a full-width layout to let content span the whole window
-                instead of the centered reading column.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Print / PDF Export</div>
-              <p class="grid-item-desc">
-                Print the current document or export it to PDF with a dedicated
-                A4 print stylesheet that renders in light theme.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Workflow Improvements */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconCode size={24} stroke={2} />
-            </span>
-            Workflow Improvements
-          </h2>
-          <div class="feature-list">
-            <FeatureItem
-              name="Smart Context Menu"
-              desc="Context-aware actions adapt to text, code, tables, images, and special blocks."
-            />
-            <FeatureItem
-              name="Copy As... Actions"
-              desc="Use structured copy options for plain text, markdown snippets, CSV/TSV/Markdown table exports, and source paths."
-            />
-            <FeatureItem
-              name="Copy / Save Rendered Blocks"
-              desc="Copy or save Mermaid, math, and image content as rendered images directly from the context menu."
-            />
-            <FeatureItem
-              name="Source-Aware Utilities"
-              desc="Context actions can reference source lines and file paths for quick jump/copy workflows."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Integrations */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconPlug size={24} stroke={2} />
-            </span>
-            Integrations
-          </h2>
-
-          <h3 class="features-subsection-title">
-            <span class="features-subsection-icon-wrap">
-              <IconTerminal2 size={20} stroke={2} />
-            </span>
-            Command Line
-          </h3>
-          <p class="features-subsection-desc">
-            Open files and directories directly from your terminal. Arto uses a
-            single-instance architecture—if it's already running, files are
-            handed off to the existing window seamlessly.
-          </p>
-          <CodeBlock
-            label="Terminal"
-            code={`# Open a file
-arto README.md
-
-# Open multiple files
-arto file1.md file2.md
-
-# Open in a new window
-arto --open=new README.md
-
-# Open in a window on current screen
-arto --open=screen README.md
-
-# Open a directory
-arto --directory=~/Documents/project README.md
-
-# Directory argument also sets explorer root
-arto ~/Documents/project`}
+        <div class="figure-pair">
+          <ShotFigure
+            name="welcome"
+            alt="Arto's welcome page with starred folders, starred files and reading history"
           />
-
-          <h3 class="features-subsection-title-spaced">
-            <span class="features-subsection-icon-wrap">
-              <IconVim />
-            </span>
-            Vim / Neovim
-          </h3>
-          <p class="features-subsection-desc">
-            The official{" "}
-            <a
-              href="https://github.com/arto-app/arto.vim"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              arto.vim
-            </a>{" "}
-            plugin lets you preview Markdown files in Arto without leaving your
-            editor.
-          </p>
-          <div class="features-grid">
-            <div class="grid-item">
-              <div class="grid-item-title">
-                <span class="kbd">:Arto</span>
-              </div>
-              <p class="grid-item-desc">
-                Open the current buffer in Arto with a single command.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">
-                <span class="kbd">:Arto {"{path}"}</span>
-              </div>
-              <p class="grid-item-desc">
-                Open any file or multiple files by specifying paths.
-              </p>
-            </div>
-          </div>
-
-          <h3 class="features-subsection-title-spaced">
-            <span class="features-subsection-icon-wrap">
-              <IconEmacs />
-            </span>
-            Emacs
-          </h3>
-          <p class="features-subsection-desc">
-            The official{" "}
-            <a
-              href="https://github.com/arto-app/arto.el"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              arto.el
-            </a>{" "}
-            package lets you open Markdown files in Arto directly from Emacs.
-          </p>
-          <div class="features-grid">
-            <div class="grid-item">
-              <div class="grid-item-title">
-                <span class="kbd">M-x arto-open</span>
-              </div>
-              <p class="grid-item-desc">
-                Open the current buffer in Arto with a single command.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">
-                <span class="kbd">C-u M-x arto-open</span>
-              </div>
-              <p class="grid-item-desc">
-                Prompt for a file to open in Arto.
-              </p>
-            </div>
-          </div>
+          <ShotFigure
+            name="panel-recent"
+            alt="The panel showing reading history grouped by day"
+          />
         </div>
       </section>
 
-      {/* macOS Integration */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconBrandApple size={24} stroke={2} />
-            </span>
-            macOS Integration
-          </h2>
-          <div class="features-grid">
-            <div class="grid-item">
-              <div class="grid-item-title">
-                <span class="kbd">Space</span>
-                Quick Look Preview
-              </div>
-              <p class="grid-item-desc">
-                Press Space on any Markdown file in Finder to get a fully
-                rendered preview—no need to open the app first.
-              </p>
-            </div>
-            <div class="grid-item">
-              <div class="grid-item-title">Finder Preview Pane</div>
-              <p class="grid-item-desc">
-                Markdown files display rendered HTML directly in Finder's
-                sidebar preview pane.
-              </p>
-            </div>
-          </div>
+      <section class="doc-section">
+        <h2 class="doc-section-title">Finding</h2>
+        <p class="doc-section-lead">
+          One palette over everything, and a find that marks where the matches
+          fall.
+        </p>
+        <div class="term-list">
+          <Term name="The command palette">
+            <kbd>⌘K</kbd> fuzzy-matches one query against the files under the
+            folder you are in, what you have read, what you have kept, and every
+            command by name — the way <code class="doc-code">fzf</code> finds a
+            file, in a single list.
+          </Term>
+          <Term name="Commands carry their shortcuts">
+            A command found by name shows the keystroke that runs it, so the
+            palette teaches the keyboard rather than replacing it.
+          </Term>
+          <Term name="Find in page">
+            <kbd>⌘F</kbd> searches from the header, with a match count and{" "}
+            <kbd>⌘G</kbd> / <kbd>⇧⌘G</kbd> between hits. The matches are marked
+            in the contents ruler, so you can see where in the document they
+            are.
+          </Term>
+          <Term name="Pinned searches">
+            A search worth keeping gets a colour of its own, and its highlights
+            survive across sessions.
+          </Term>
+        </div>
+        <div class="figure-pair">
+          <ShotFigure
+            name="palette"
+            alt="The command palette matching both commands and documents"
+          />
+          <ShotFigure
+            name="find"
+            alt="Find in page with matches highlighted and marked in the contents ruler"
+          />
         </div>
       </section>
 
-      {/* Keyboard Shortcuts */}
-      <section class="features-section">
-        <div class="features-section-container">
-          <h2 class="features-section-title">
-            <span class="section-icon">
-              <IconKeyboard size={24} stroke={2} />
-            </span>
-            Keyboard Shortcuts
-          </h2>
-          <div class="features-grid">
-            <ShortcutItem keys={["⌘", "O"]} desc="Open file" />
-            <ShortcutItem keys={["⌘", "F"]} desc="Find in page" />
-            <ShortcutItem keys={["⌘", "G"]} desc="Find next" />
-            <ShortcutItem keys={["⇧", "⌘", "G"]} desc="Find previous" />
-            <ShortcutItem keys={["⌘", "T"]} desc="New tab" />
-            <ShortcutItem keys={["⌘", "W"]} desc="Close tab" />
-            <ShortcutItem keys={["⌥", "⌘", "P"]} desc="Toggle tab pin" />
-            <ShortcutItem keys={["⌘", "+"]} desc="Zoom in" />
-            <ShortcutItem keys={["⌘", "-"]} desc="Zoom out" />
-            <ShortcutItem keys={["⌘", "0"]} desc="Reset zoom" />
-            <ShortcutItem keys={["⌘", ","]} desc="Preferences" />
-            <ShortcutItem keys={["⌘", "["]} desc="Navigate back" />
-            <ShortcutItem keys={["⌘", "]"]} desc="Navigate forward" />
-            <ShortcutItem keys={["⌘", "B"]} desc="Toggle sidebar" />
-            <ShortcutItem keys={["⇧", "⌘", "B"]} desc="Toggle right sidebar" />
-            <ShortcutItem keys={["⌘", "R"]} desc="Reload document" />
-          </div>
+      <section class="doc-section">
+        <h2 class="doc-section-title">Windows</h2>
+        <p class="doc-section-lead">
+          One document to a window, and child windows for the things inside it.
+        </p>
+        <div class="term-list">
+          <Term name="A window is a document">
+            Each window shows one document and names it in its title. Opening
+            another document opens another window;{" "}
+            <code class="doc-code">arto a.md b.md</code> opens two.
+          </Term>
+          <Term name="Child windows">
+            A diagram, a formula or an image opens into a viewer of its own,
+            with zoom, pan, fit and copy-as-image.
+          </Term>
+          <Term name="Drag and drop">
+            A file dragged onto Arto opens — including one dragged out of an
+            editor such as VS Code.
+          </Term>
+          <Term name="Where a window appears">
+            Preferences sets the size and position a new window takes, and
+            whether it reuses the last focused window, one on the screen the
+            cursor is on, or always a new one.
+          </Term>
+          <Term name="Opening without being interrupted">
+            <code class="doc-code">--behind</code> hands a document to Arto
+            without pulling it in front of whatever you are working in.
+          </Term>
+        </div>
+        <ShotFigure
+          name="diagram-viewer"
+          alt="A Mermaid diagram open in its own viewer window"
+        />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-section-title">Rich content</h2>
+        <p class="doc-section-lead">
+          Diagrams, formulas, images and code — and getting any of them back out
+          again.
+        </p>
+        <div class="term-list">
+          <Term name="Mermaid diagrams">
+            Flowcharts, sequence diagrams, state diagrams and the rest, drawn in
+            the page as you reach them and openable in their own viewer.
+          </Term>
+          <Term name="KaTeX math">
+            Inline and display formulas, typeset where they stand, with the
+            dollar-sign edge cases against Markdown punctuation handled.
+          </Term>
+          <Term name="Drawn near the viewport">
+            Diagrams, formulas and highlighting are rendered as they come into
+            view rather than all at once, so a long document opens as quickly as
+            a short one.
+          </Term>
+          <Term name="Copy As…">
+            The context menu copies a selection as Markdown, a code block with
+            or without its fence, a table as Markdown, CSV or TSV, and an image
+            as Markdown or as the image itself — with or without a background.
+          </Term>
+          <Term name="Source-aware utilities">
+            Copy a file path, a path with the line you are on, or a path with a
+            range; save an image to disk; reveal the document in Finder; or make
+            the folder above the current root.
+          </Term>
+        </div>
+        <div class="figure-pair">
+          <ShotFigure
+            name="diagrams"
+            alt="Mermaid diagrams rendered inline in a document"
+          />
+          <ShotFigure
+            name="contents"
+            alt="The contents gutter opened into a list of headings"
+          />
         </div>
       </section>
-    </>,
+
+      <section class="doc-section">
+        <h2 class="doc-section-title">Fitting in</h2>
+        <p class="doc-section-lead">
+          Themes, keys, and the parts of the operating system that expect a
+          Markdown reader.
+        </p>
+        <div class="term-list">
+          <Term name="GitHub's own themes">
+            Light and dark defaults, dimmed, high contrast, and the
+            colour-vision themes — with a separate choice for light mode and
+            dark mode, and the system deciding which applies. Each is previewed
+            before it is chosen.
+          </Term>
+          <Term name="Preferences, one pane per question">
+            A window of its own, split into appearance, Markdown, reading,
+            panel, window, startup and keybindings.
+          </Term>
+          <Term name="Keybindings">
+            Default, Vim and Emacs presets, every binding editable. Native menu
+            shortcuts are separate from the in-window engine, which supports
+            chord sequences such as <kbd>g</kbd> <kbd>g</kbd>. Lists and fields
+            answer to bindings too, not only the document.
+          </Term>
+          <Term name="Zoom">
+            <kbd>⌘+</kbd>, <kbd>⌘−</kbd> and <kbd>⌘0</kbd>, or the trackpad, with
+            the level remembered.
+          </Term>
+          <Term name="Print and PDF">
+            <kbd>⌘P</kbd> prints the rendered document, or saves it as a PDF,
+            through a stylesheet made for paper.
+          </Term>
+          <Term name="Quick Look and the Finder preview pane (macOS)">
+            Press <kbd>Space</kbd> on a Markdown file and it previews rendered
+            rather than as source. Both read the same configuration the app
+            does.
+          </Term>
+        </div>
+        <ShotFigure
+          name="preferences"
+          alt="Arto's preferences window showing the appearance pane and GitHub's themes"
+        />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-section-title">Beyond the window</h2>
+        <p class="doc-section-lead">
+          A command that hands files over, and a renderer that needs no app at
+          all.
+        </p>
+        <div class="term-list">
+          <Term name="Single instance">
+            <code class="doc-code">arto</code> routes to the process already
+            running rather than starting a second one, over a socket private to
+            your user.
+          </Term>
+          <Term name="Standalone pages">
+            <code class="doc-code">arto page README.md &gt; README.html</code>{" "}
+            writes one self-contained HTML file — stylesheet, diagrams and math
+            inlined — that opens in any browser. It follows your configuration,
+            and ships with a Content-Security-Policy that blocks scripts
+            embedded in the Markdown.
+          </Term>
+          <Term name="A renderer without the app">
+            The same command exists as a separate{" "}
+            <code class="doc-code">arto-page</code> binary, for machines that
+            need the output but not the window.
+          </Term>
+        </div>
+      </section>
+    </article>,
     { title: "Features — Arto", current: "features" }
   );
 });
-
-function FeatureItem({ name, desc }: { name: string; desc: string }) {
-  return (
-    <div class="feature-item">
-      <IconCheck class="check-icon" size={20} stroke={2} />
-      <div class="feature-text">
-        <div class="feature-name">{name}</div>
-        <div class="feature-description">{desc}</div>
-      </div>
-    </div>
-  );
-}
-
-function ShortcutItem({ keys, desc }: { keys: string[]; desc: string }) {
-  return (
-    <div class="shortcut-item">
-      <div class="shortcut-keys">
-        {keys.map((key) => (
-          <span key={key} class="kbd">
-            {key}
-          </span>
-        ))}
-      </div>
-      <span class="shortcut-desc">{desc}</span>
-    </div>
-  );
-}
