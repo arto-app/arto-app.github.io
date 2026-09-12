@@ -6,8 +6,10 @@ import ssg from "@hono/vite-ssg";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// GitHub Pages base path (set via environment variable or default to root)
-const base = process.env.BASE_PATH ?? "/";
+// GitHub Pages base path (set via environment variable or default to root).
+// Annotated, and rebuilt from its own tail, because Vite's devServer option
+// takes `/${string}` rather than a plain string.
+const base: `/${string}` = `/${(process.env.BASE_PATH ?? "/").replace(/^\/+/, "")}`;
 
 export default defineConfig(({ mode }) => {
   // Client build (CSS + JS)

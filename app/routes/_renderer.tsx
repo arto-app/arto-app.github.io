@@ -21,7 +21,7 @@ export default jsxRenderer(({ children, title, current }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="Arto is a beautiful, offline-first macOS app for reading Markdown with GitHub-style rendering."
+          content="Arto renders Markdown the way GitHub does — locally and offline, in a desktop app built for reading rather than for editing."
         />
         <meta name="theme-color" content="#0d1117" />
 
@@ -30,7 +30,7 @@ export default jsxRenderer(({ children, title, current }) => {
         <meta property="og:title" content={title} />
         <meta
           property="og:description"
-          content="Arto is a beautiful, offline-first macOS app for reading Markdown with GitHub-style rendering."
+          content="Arto renders Markdown the way GitHub does — locally and offline, in a desktop app built for reading rather than for editing."
         />
         <meta property="og:image" content="https://arto-app.github.io/images/og-image.png" />
         <meta property="og:url" content="https://arto-app.github.io/" />
@@ -41,7 +41,7 @@ export default jsxRenderer(({ children, title, current }) => {
         <meta name="twitter:title" content={title} />
         <meta
           name="twitter:description"
-          content="Arto is a beautiful, offline-first macOS app for reading Markdown with GitHub-style rendering."
+          content="Arto renders Markdown the way GitHub does — locally and offline, in a desktop app built for reading rather than for editing."
         />
         <meta name="twitter:image" content="https://arto-app.github.io/images/og-image.png" />
 

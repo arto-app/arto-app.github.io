@@ -33,70 +33,59 @@ function initTheme(): void {
   }
 }
 
+function clips(): HTMLVideoElement[] {
+  return [...document.querySelectorAll<HTMLVideoElement>("video.clip")];
+}
+
 /**
- * Carousel auto-slide functionality
+ * Play the clip a reader can actually see, and only that one.
+ *
+ * Every clip is in the markup twice, once per theme, with CSS hiding the
+ * wrong one — so an `autoplay` attribute would have the browser fetch a
+ * file that will never be displayed. Starting playback from here instead
+ * keeps `preload="none"` honest: the hidden theme costs nothing, and a clip
+ * below the fold costs nothing until it is reached.
+ *
+ * A reader who asked for reduced motion gets none of this. The clips keep
+ * their poster and their controls, which leaves them watchable on purpose
+ * rather than unavoidable.
  */
-
-function initCarousel(): void {
-  const carousel = document.getElementById("hero-carousel");
-  if (!carousel) return;
-
-  const slides = carousel.querySelectorAll<HTMLElement>(".carousel-slide");
-  const dots = carousel.querySelectorAll<HTMLElement>(".carousel-dot");
-  if (slides.length === 0) return;
-
-  let currentIndex = 0;
-  const intervalMs = 5000; // 5 seconds per slide
-
-  function showSlide(index: number): void {
-    // Wrap around
-    if (index >= slides.length) index = 0;
-    if (index < 0) index = slides.length - 1;
-
-    // Update slides
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("active", i === index);
-    });
-
-    // Update dots
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === index);
-    });
-
-    currentIndex = index;
+function playVisibleClips(): void {
+  if (globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    for (const clip of clips()) {
+      clip.controls = true;
+    }
+    return;
   }
 
-  function nextSlide(): void {
-    showSlide(currentIndex + 1);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const clip = entry.target as HTMLVideoElement;
+        // `display: none` is how the other theme's copy is hidden, and a
+        // hidden element never intersects — so this only ever reaches the
+        // one on screen.
+        if (entry.isIntersecting) {
+          void clip.play().catch(() => {
+            // Autoplay refused: the poster stands, and controls let the
+            // reader start it.
+            clip.controls = true;
+          });
+        } else {
+          clip.pause();
+        }
+      }
+    },
+    { rootMargin: "200px" }
+  );
+  for (const clip of clips()) {
+    observer.observe(clip);
   }
-
-  // Auto-slide
-  let timer = setInterval(nextSlide, intervalMs);
-
-  // Click handlers for dots
-  dots.forEach((dot) => {
-    dot.addEventListener("click", () => {
-      const index = parseInt(dot.dataset.index ?? "0", 10);
-      showSlide(index);
-      // Reset timer on manual navigation
-      clearInterval(timer);
-      timer = setInterval(nextSlide, intervalMs);
-    });
-  });
-
-  // Pause on hover
-  carousel.addEventListener("mouseenter", () => {
-    clearInterval(timer);
-  });
-
-  carousel.addEventListener("mouseleave", () => {
-    timer = setInterval(nextSlide, intervalMs);
-  });
 }
 
 function attachHandler(): void {
   initTheme();
-  initCarousel();
+  playVisibleClips();
 
   const btn = document.getElementById("theme-toggle");
   if (btn) {
