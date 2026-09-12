@@ -14,20 +14,42 @@ export type ArtoSyncLogEntry = {
 };
 
 export const artoReferenceBaseline: ArtoReference = {
-  version: "v0.15.1",
-  commit: "ca1365afff67bc3e5690c162d343e26c2ec90d52",
-  date: "2026-02-01",
+  version: "v0.30.0",
+  commit: "75e9ca89aa992803ade1f68a2952c42052a1b09c",
+  date: "2026-07-25",
   note: "Approximate version reflected by the previous website update.",
 };
 
 export const artoReferenceCurrent: ArtoReference = {
-  version: "v0.30.0",
-  commit: "75e9ca89aa992803ade1f68a2952c42052a1b09c",
-  date: "2026-07-25",
-  note: "Latest Arto repository state used for this website refresh.",
+  version: "v0.36.0",
+  commit: "0910e5ceaf427062f9b2b987ecb09ec9b8fa5386",
+  date: "2026-09-10",
+  note: "Latest Arto release used for this website refresh.",
 };
 
 export const artoSyncLog: ArtoSyncLogEntry[] = [
+  {
+    date: "2026-09-12",
+    targetVersion: "v0.36.0",
+    targetCommit: "0910e5ceaf427062f9b2b987ecb09ec9b8fa5386",
+    summary:
+      "Rebuild the website for the redesigned application: every page rewritten and every screenshot retaken.",
+    changes: [
+      "Replaced tabs with one document to a window, and rewrote the windows section around it.",
+      "Documented the welcome page a window shows when nothing is open: starred folders, starred files, and reading history grouped by day.",
+      "Documented the panel and its three faces — file explorer over several roots, reading history, and bookmarks — replacing the former sidebar description.",
+      "Documented the command palette, which fuzzy-finds files, history, bookmarks and commands in one list.",
+      "Replaced the table-of-contents panel with the contents gutter that stands in the page's own margin.",
+      "Moved find in page into the header, and noted that pinned searches keep their marks in the contents.",
+      "Documented preferences as a window of its own, with one pane per question.",
+      "Documented GitHub's own themes, including dimmed, high contrast and the colour-vision ones, with a separate choice for light and dark.",
+      "Noted that the Markdown engine is now ox-content rather than a local rendering of GitHub's dialect.",
+      "Added the `arto page` subcommand for standalone HTML output, and the `--behind` flag.",
+      "Added a reading position that is restored when a document is reopened.",
+      "Updated installation for the Linux AppImage, the single binary for Linux and Windows, and the `arto-page` Nix package.",
+      "Retook every screenshot, GIF and the demo video against the current interface, in both light and dark themes.",
+    ],
+  },
   {
     date: "2026-07-25",
     targetVersion: "v0.30.0",
