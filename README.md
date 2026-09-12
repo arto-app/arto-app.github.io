@@ -60,16 +60,30 @@ app/
 │   ├── Header.tsx
 │   ├── Footer.tsx
 │   ├── CodeBlock.tsx
+│   ├── Figure.tsx    # Figures, theme-paired screenshots, window cascade
 │   └── Icons.tsx
 ├── lib/
-│   └── arto-version.ts # Arto reference versions and sync log data
+│   ├── arto-version.ts # Arto reference versions and sync log data
+│   ├── image-size.ts   # Intrinsic size of every asset under public/images
+│   └── path.ts         # Base-path helper for hand-written href/src
 ├── style.css         # Global styles
-└── client.ts         # Client-side JS (theme toggle, carousel)
+└── client.ts         # Client-side JS (theme toggle)
 
 public/
 ├── images/           # Screenshots, GIFs
 └── videos/           # Demo video
 ```
+
+### Screenshots
+
+Every screenshot exists twice, `<name>-light.png` and `<name>-dark.png`, and
+`Shot` renders both so CSS can show the one matching the reader's theme. A new
+or re-cropped asset needs its pixel size recorded in `app/lib/image-size.ts`,
+or the page will not reserve space for it while it loads.
+
+Captures are taken against a throwaway `HOME`, so the app's own welcome page,
+history and bookmarks show demo content rather than whatever the person
+holding the camera happens to have open.
 
 ## Maintainer Notes
 
