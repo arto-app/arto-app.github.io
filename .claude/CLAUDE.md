@@ -39,10 +39,14 @@ dist/                 # Build output (git-ignored)
 
 ## Screenshots
 
-Each screenshot exists as a `-light.png` / `-dark.png` pair and is placed with
-`Shot` / `ShotFigure` from `components/Figure.tsx`; CSS shows whichever matches
-the reader's theme. Record a new asset's pixel size in `lib/image-size.ts` —
-without it the page reserves no space and jumps as the image loads.
+Every capture is a `-light` / `-dark` pair — lossless WebP stills in
+`public/images`, H.264 clips and the walkthrough in `public/videos` — placed
+with `Shot` / `ShotFigure` / `MotionFigure` from `components/Figure.tsx`; CSS
+shows whichever matches the reader's theme. Neither format is a compromise on
+this material: lossless WebP is about 29% of the PNG for identical pixels, and
+H.264 about a sixth of the GIF for a better picture. Record a new asset's
+pixel size in `lib/image-size.ts` — without it the page reserves no space and
+jumps as the asset loads.
 
 ## Development Commands
 
@@ -61,8 +65,11 @@ This site follows Arto's design language:
 - **Colors**: Uses Arto's CSS variables (light/dark themes)
 - **Philosophy**: "控えめに" (Keep it subtle) - minimal, content-focused
 - **Typography**: System fonts, 16px body text, prose capped at a 700px measure
-- **Layout**: One document column per page — a masthead, then `.doc-section`
-  headings with figures that reach wider than the text they illustrate
+- **Layout**: Two shapes. The home page is a landing page (`.lp-*`) — a centred
+  hero, then rows alternating a claim against the screenshot backing it, with
+  full-width bands breaking the rhythm. Every other page is one document column
+  (`.doc-*`) — a masthead, then `.doc-section` headings with figures that reach
+  wider than the text they illustrate.
 
 ## Adding New Pages
 
