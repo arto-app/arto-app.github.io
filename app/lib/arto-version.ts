@@ -47,7 +47,9 @@ export const artoSyncLog: ArtoSyncLogEntry[] = [
       "Added the `arto page` subcommand for standalone HTML output, and the `--behind` flag.",
       "Added a reading position that is restored when a document is reopened.",
       "Updated installation for the Linux AppImage, the single binary for Linux and Windows, and the `arto-page` Nix package.",
-      "Retook every screenshot, GIF and the demo video against the current interface, in both light and dark themes.",
+      "Retook every screenshot, clip and the demo video against the current interface, in both light and dark themes, and moved the clips off GIF onto H.264.",
+      "Gave the reason tabs went away: the strip was a second copy of the reading history, which already remembers everything opened.",
+      "Documented what a pinned search is — Return keeps what was typed — and what the three devices of a contents mark mean: width is the heading's depth, colour is a pinned search, thickness is where the reader is.",
     ],
   },
   {
