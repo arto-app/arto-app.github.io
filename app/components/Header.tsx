@@ -10,6 +10,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { href: basePath("/"), label: "Home", id: "home" },
   { href: basePath("/features"), label: "Features", id: "features" },
+  { href: basePath("/lenses"), label: "Lenses", id: "lenses" },
   { href: basePath("/versions"), label: "Versions", id: "versions" },
   { href: basePath("/install"), label: "Install", id: "install" },
 ];
@@ -26,7 +27,7 @@ export function Header({ current }: { current: string }) {
           {navItems.map((item) => (
             <a
               href={item.href}
-              class="nav-link"
+              class={`nav-link nav-link-${item.id}`}
               aria-current={current === item.id ? "page" : undefined}
             >
               {item.label}

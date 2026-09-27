@@ -243,6 +243,7 @@ code {
 .logo-img {
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
 }
 
 .site-nav {
@@ -592,6 +593,67 @@ kbd {
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--text-secondary);
+}
+
+/* ===== Walkthroughs, one at a time =====
+   Until the script has run, every slide is shown and the tabs are not:
+   buttons that do nothing are worse than a longer page. */
+.demo-tabs {
+  display: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.demo-carousel[data-ready] .demo-tabs {
+  display: flex;
+}
+
+.demo-slide + .demo-slide {
+  margin-top: 48px;
+}
+
+.demo-carousel[data-ready] .demo-slide + .demo-slide {
+  margin-top: 0;
+}
+
+.demo-slide[hidden] {
+  display: none;
+}
+
+.demo-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.demo-tab:hover {
+  background: var(--hover-bg);
+  color: var(--text-color);
+}
+
+.demo-tab[aria-selected="true"] {
+  border-color: var(--text-color);
+  color: var(--text-color);
+}
+
+.demo-tab-index {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+}
+
+.demo-summary {
+  text-align: center;
 }
 
 /* ===== A shot with part of itself enlarged over it ===== */
@@ -949,6 +1011,13 @@ kbd {
 
   /* The footer carries the same link, and the row has to fit. */
   .github-link {
+    display: none;
+  }
+}
+
+/* The logo already links home, and the row has to fit. */
+@media (max-width: 420px) {
+  .nav-link-home {
     display: none;
   }
 }

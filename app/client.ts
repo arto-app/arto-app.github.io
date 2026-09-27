@@ -83,8 +83,77 @@ function playVisibleClips(): void {
   }
 }
 
+/**
+ * Show one walkthrough at a time, and move to the next when it ends.
+ *
+ * A hidden slide is `display: none`, so the observer in `playVisibleClips`
+ * never sees it; revealing one is what starts it playing. Leaving a slide
+ * rewinds its clip, so coming back to it starts from the beginning rather
+ * than from the frame someone happened to leave it on.
+ *
+ * With reduced motion nothing advances on its own — the clips do not play
+ * by themselves either, so there is no end for one to hand on from.
+ */
+function initDemoCarousels(): void {
+  const reduced = globalThis.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  for (const carousel of document.querySelectorAll<HTMLElement>(
+    "[data-demo-carousel]"
+  )) {
+    const tabs = [
+      ...carousel.querySelectorAll<HTMLButtonElement>(".demo-tab"),
+    ];
+    const slides = [...carousel.querySelectorAll<HTMLElement>(".demo-slide")];
+    let current = 0;
+
+    const select = (index: number, focus = false): void => {
+      current = (index + slides.length) % slides.length;
+      tabs.forEach((tab, i) => {
+        const selected = i === current;
+        tab.setAttribute("aria-selected", String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        if (selected && focus) tab.focus();
+      });
+      slides.forEach((slide, i) => {
+        slide.hidden = i !== current;
+        if (i !== current) {
+          for (const video of slide.querySelectorAll("video")) {
+            video.pause();
+            video.currentTime = 0;
+          }
+        }
+      });
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(i));
+      tab.addEventListener("keydown", (event) => {
+        const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+        if (step) {
+          event.preventDefault();
+          select(current + step, true);
+        }
+      });
+    });
+    if (!reduced) {
+      slides.forEach((slide, i) => {
+        for (const video of slide.querySelectorAll("video")) {
+          video.addEventListener("ended", () => {
+            if (i === current) select(current + 1);
+          });
+        }
+      });
+    }
+
+    carousel.dataset.ready = "true";
+    select(0);
+  }
+}
+
 function attachHandler(): void {
   initTheme();
+  initDemoCarousels();
   playVisibleClips();
 
   const btn = document.getElementById("theme-toggle");

@@ -79,6 +79,8 @@ type ClipProps = {
   alt: string;
   /** Offer the reader a scrubber, for a clip long enough to want one. */
   controls?: boolean;
+  /** Off for a clip that hands on to another when it ends. */
+  loop?: boolean;
 };
 
 /**
@@ -95,10 +97,10 @@ type ClipProps = {
  * for reduced motion gets left alone. Until then the poster stands in, so a
  * reader with no JavaScript sees the still rather than an empty box.
  */
-function Clip({ name, alt, controls }: ClipProps) {
+function Clip({ name, alt, controls, loop = true }: ClipProps) {
   const { width, height } = imageSize(name);
   const common = {
-    loop: true,
+    loop,
     muted: true,
     playsinline: true,
     preload: "none",
@@ -149,6 +151,64 @@ export function MotionFigure({
     <Figure caption={caption} wide={wide}>
       <Clip name={name} alt={alt} controls={controls} />
     </Figure>
+  );
+}
+
+type Demo = {
+  name: string;
+  /** The tab's label: what the walkthrough is about, in a word or two. */
+  title: string;
+  alt: string;
+  /** One sentence under the clip, saying what to watch for. */
+  summary: Child;
+};
+
+/**
+ * Walkthroughs shown one at a time, each handing on to the next when it ends.
+ *
+ * Without JavaScript every walkthrough is in the page, one under another, so
+ * nothing is out of reach. `client.ts` turns them into tabs once it runs; the
+ * tabs are hidden until then rather than drawn as buttons that do nothing.
+ */
+export function DemoCarousel({ demos }: { demos: readonly Demo[] }) {
+  return (
+    <div class="demo-carousel" data-demo-carousel>
+      <div class="demo-tabs" role="tablist" aria-label="Walkthroughs">
+        {demos.map((demo, i) => (
+          <button
+            key={demo.name}
+            type="button"
+            role="tab"
+            class="demo-tab"
+            id={`demo-tab-${demo.name}`}
+            aria-controls={`demo-${demo.name}`}
+            aria-selected={i === 0 ? "true" : "false"}
+            tabindex={i === 0 ? 0 : -1}
+          >
+            <span class="demo-tab-index">{i + 1}</span>
+            {demo.title}
+          </button>
+        ))}
+      </div>
+      {demos.map((demo) => (
+        <div
+          key={demo.name}
+          class="demo-slide"
+          id={`demo-${demo.name}`}
+          role="tabpanel"
+          aria-labelledby={`demo-tab-${demo.name}`}
+        >
+          <figure class="figure figure-wide">
+            <div class="figure-frame">
+              <Clip name={demo.name} alt={demo.alt} loop={false} />
+            </div>
+            <figcaption class="figure-caption demo-summary">
+              {demo.summary}
+            </figcaption>
+          </figure>
+        </div>
+      ))}
+    </div>
   );
 }
 

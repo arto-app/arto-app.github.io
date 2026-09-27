@@ -74,14 +74,27 @@ qlmanage -r && qlmanage -r cache`}
         <p class="doc-p">
           On every other distribution — Fedora, openSUSE, Arch — download the{" "}
           <code class="doc-code">.AppImage</code> instead, make it executable
-          and run it. It needs WebKitGTK 4.1 on the system; on Fedora that is{" "}
-          <code class="doc-code">sudo dnf install webkit2gtk4.1</code>.
+          and run it.
         </p>
         <div class="figure">
           <CodeBlock
             label="Terminal"
             code={`chmod +x arto_<version>_x86_64.AppImage
 ./arto_<version>_x86_64.AppImage`}
+          />
+        </div>
+        <p class="doc-p">
+          The AppImage needs WebKitGTK 4.1 installed on the system — the one
+          thing it deliberately does not carry, since WebKitGTK's helper
+          processes only work as the set your package manager installed.
+          Install it first if it is missing:
+        </p>
+        <div class="figure">
+          <CodeBlock
+            label="Terminal"
+            code={`sudo dnf install webkit2gtk4.1          # Fedora
+sudo zypper install libwebkit2gtk-4_1-0 # openSUSE
+sudo pacman -S webkit2gtk-4.1           # Arch`}
           />
         </div>
         <div class="callout callout-warn">
@@ -115,6 +128,12 @@ qlmanage -r && qlmanage -r cache`}
             code="Arto_<version>_<arch>-setup.exe"
           />
         </div>
+        <p class="doc-p">
+          Arto renders through Microsoft's WebView2 runtime. Windows 11 ships
+          it and Windows 10 usually has it from Edge; where it is missing, the
+          installer fetches it, so that first install needs a connection.
+          Nothing after it does.
+        </p>
         <p class="doc-p">
           Both x86-64 and ARM are built. If you would rather not install
           anything, the same release carries{" "}
@@ -157,6 +176,15 @@ qlmanage -r && qlmanage -r cache`}
           <code class="doc-code">PATH</code> unless you put it there. The Linux
           binary still needs WebKitGTK 4.1, exactly as the{" "}
           <code class="doc-code">.deb</code> and the AppImage do.
+        </p>
+        <p class="doc-p">
+          On Windows the two also differ at a terminal. The installed copy is a
+          GUI program, so no console opens behind a document started from
+          Explorer; the single binary is a console program, so the shell waits
+          for it — which makes it the copy to put on your{" "}
+          <code class="doc-code">PATH</code> for scripts. Both carry the
+          Microsoft C runtime, so neither asks for the Visual C++
+          redistributable first.
         </p>
         <p class="doc-p doc-muted">
           macOS has no such download on purpose. Most of what makes Arto worth
@@ -274,6 +302,15 @@ arto page README.md > README.html`}
             rel="noopener noreferrer"
           >
             CLI documentation
+          </a>
+          , where <code class="doc-code">config.json</code> lives and what it
+          holds in the{" "}
+          <a
+            href="https://github.com/arto-app/Arto/blob/main/docs/configuration.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            configuration documentation
           </a>
           , and the shortcut file format in the{" "}
           <a

@@ -5,6 +5,7 @@ import { artoReferenceCurrent } from "../lib/arto-version";
 import { IconBrandGithub, IconDownload } from "../components/Icons";
 import { CodeBlock } from "../components/CodeBlock";
 import {
+  DemoCarousel,
   MotionFigure,
   Shot,
   ShotFigure,
@@ -100,15 +101,34 @@ export default createRoute((c) => {
           </p>
         </header>
 
-        {/* The walkthrough is the hero: forty seconds of the welcome page,
-            the palette, the panel, the contents beside the text and both
-            themes says more than the still it replaced. */}
+        {/* The walkthroughs are the hero, split by what they show rather
+            than run as one long take: a reader can go straight to the part
+            they came for. */}
         <div class="lp-hero-figure">
-          <MotionFigure
-            name="demo"
-            alt="Forty seconds of Arto: the welcome page, the palette, the panel, the contents beside the page, and both themes"
-            controls
-            wide
+          <DemoCarousel
+            demos={[
+              {
+                name: "demo-reading",
+                title: "Getting around",
+                alt: "Arto's welcome page, then the palette opening a document, the panel's faces, and the contents list jumping to a heading",
+                summary:
+                  "One palette for files, history and commands; one panel for folders, history, stars and links; a contents list beside the page.",
+              },
+              {
+                name: "demo-closely",
+                title: "Reading it again",
+                alt: "A revised document with its changes marked in the margin, a link previewed on hover, a passage highlighted, and focus mode dimming all but one block",
+                summary:
+                  "What changed since you last read it, previews without leaving your place, highlights with notes, and focus mode.",
+              },
+              {
+                name: "demo-lenses",
+                title: "Lenses",
+                alt: "A document translated into Japanese block by block from the top, then summarised from the header",
+                summary:
+                  "A translation that takes the page's places as it is written, and a summary opened from the header — sent nowhere until you ask.",
+              },
+            ]}
           />
         </div>
       </div>
@@ -162,20 +182,20 @@ export default createRoute((c) => {
 
         <Row
           eyebrow="Getting around"
-          title="A panel with three faces"
+          title="One panel, many faces"
           flip
           media={
             <MotionFigure
               name="motion-panel"
-              alt="Switching the panel between its file explorer, history and bookmark faces"
+              alt="Switching the panel between its file explorer, history, starred and links faces"
             />
           }
         >
           <p>
             A file explorer across as many folders as you need, the documents
-            you have been reading grouped by day, and the ones you keep coming
-            back to. It stays hidden until you reach for it, and pins open when
-            you want it there.
+            you have been reading grouped by day, the ones you keep coming back
+            to, and the ones that link to what is on screen. It stays hidden
+            until you reach for it, and pins open when you want it there.
           </p>
         </Row>
 
@@ -227,6 +247,45 @@ export default createRoute((c) => {
             source at the top — the Mermaid, the LaTeX, the alt text.
           </p>
         </Row>
+      </div>
+
+      <div class="lp-band">
+        <div class="lp-inner">
+          <div class="lp-band-head">
+            <h2 class="lp-band-title">For reading it again</h2>
+            <p class="lp-band-lead">
+              Most of what gets read in Arto is read more than once — a plan, a
+              spec, notes someone else keeps rewriting.
+            </p>
+          </div>
+          <div class="lp-grid">
+            <Card title="What changed">
+              Reopen a document and the blocks rewritten since you last read it
+              are marked in the margin, with a key to step between them.
+            </Card>
+            <Card title="Highlights and notes">
+              Mark a passage, write beside it, and find both again — even after
+              the file has been edited above them.
+            </Card>
+            <Card title="Previews on hover">
+              Rest on a footnote or a link and what it points at appears beside
+              it, without leaving your place.
+            </Card>
+            <Card title="Focus mode">
+              The chrome folds away and every block but the one you are in
+              dims.
+            </Card>
+            <Card title="Time left">
+              How long a document takes, and how much of it remains from where
+              you are — prose, code and Japanese each counted at their own pace.
+            </Card>
+            <Card title="Lenses">
+              A translation, a summary or notes from Claude, Codex or a local
+              model, shown with the text — sent nowhere until you open one.{" "}
+              <a href={basePath("/lenses")}>More on lenses</a>
+            </Card>
+          </div>
+        </div>
       </div>
 
       <div class="lp-band">

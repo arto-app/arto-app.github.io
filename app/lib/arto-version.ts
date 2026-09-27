@@ -14,20 +14,42 @@ export type ArtoSyncLogEntry = {
 };
 
 export const artoReferenceBaseline: ArtoReference = {
-  version: "v0.30.0",
-  commit: "75e9ca89aa992803ade1f68a2952c42052a1b09c",
-  date: "2026-07-25",
-  note: "Approximate version reflected by the previous website update.",
-};
-
-export const artoReferenceCurrent: ArtoReference = {
   version: "v0.36.0",
   commit: "0910e5ceaf427062f9b2b987ecb09ec9b8fa5386",
   date: "2026-09-10",
+  note: "Version reflected by the previous website update.",
+};
+
+export const artoReferenceCurrent: ArtoReference = {
+  version: "v0.39.1",
+  commit: "96ac56c4babfa6e883c4fd84626b3cf3d1814392",
+  date: "2026-09-27",
   note: "Latest Arto release used for this website refresh.",
 };
 
 export const artoSyncLog: ArtoSyncLogEntry[] = [
+  {
+    date: "2026-09-27",
+    targetVersion: "v0.39.1",
+    targetCommit: "96ac56c4babfa6e883c4fd84626b3cf3d1814392",
+    summary:
+      "Update website content from Arto v0.36.0 to v0.39.1: the reading features, lenses, and the Windows and Linux packaging changes.",
+    changes: [
+      "Added a Lenses page of its own: the page, popover and annotate displays, the agents and how each is asked, what an agent may be allowed, recipes, and how answers are kept.",
+      "Documented lenses: an agent the reader configures — Claude, Codex, Ollama or any OpenAI-compatible server — shown with the document as a translation, a summary or notes, with nothing sent until a lens is opened.",
+      "Documented highlights with notes, kept per document and found again by their words after the file changes.",
+      "Documented the marks for what changed since a document was last read, and stepping through them.",
+      "Documented focus mode, the reading time and time left in the header, and link and footnote previews on hover.",
+      "Documented the typography settings: measure, line height, typeface, text size and CJK font language.",
+      "Noted that a long table keeps its header row in view while it is read.",
+      "Replaced the three-faced panel with four, adding Links — the documents that link to the one on screen.",
+      "Noted the mouse's side buttons walking the history, and that the palette leaves out the document already on screen.",
+      "Documented config.json being reloaded on save and described by a JSON Schema for editor completion.",
+      "Added --position, --size, --theme and --wait-ready for scripting a window from the command line.",
+      "Corrected the raw HTML choices to filtered, passed through or escaped, and noted that filtering now also drops event handlers and javascript: links.",
+      "Updated installation: WebKitGTK commands for Fedora, openSUSE and Arch, the Windows installer fetching WebView2 only where it is missing, and the single binary as the copy to run from a Windows terminal.",
+    ],
+  },
   {
     date: "2026-09-12",
     targetVersion: "v0.36.0",
