@@ -1,0 +1,2 @@
+#!/bin/sh
+exec osascript -l JavaScript "$(dirname "$0")/mouse.js" "$@"

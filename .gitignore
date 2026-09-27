@@ -4,3 +4,4 @@ dist/
 .vite
 .playwright-mcp
 node_modules/
+__pycache__/
