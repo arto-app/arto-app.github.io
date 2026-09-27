@@ -5,24 +5,27 @@ Build the static site for production deployment.
 ## Steps
 
 1. Run the build:
+
    ```bash
-   deno task build
+   just build
    ```
+
+   This runs two Vite passes: `--mode client` bundles `app/style.css` and
+   `app/client.ts` into `dist/static/`, then the SSG pass renders every route
+   in `app/routes/` to HTML.
 
 2. Verify the output in `./dist`:
-   - `index.html` - Home page
-   - `features.html` - Features page
-   - `install.html` - Installation page
-   - `css/` - Stylesheets
-   - `images/` - Logo and favicon
-   - `.nojekyll` - GitHub Pages marker
+   - One `.html` per route (`index.html`, `features.html`, …)
+   - `static/` - Bundled CSS and client JS
+   - `images/`, `videos/` - Copied as-is from `public/`
 
 3. Optionally preview locally:
+
    ```bash
-   deno task serve
+   just preview
    ```
 
-## Output
+## Notes
 
-The build generates pure static HTML files that can be deployed to any static
-hosting service.
+- Set `BASE_PATH` to build for a sub-path (e.g. `BASE_PATH=/arto-site/`);
+  it defaults to `/`.

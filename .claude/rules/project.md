@@ -9,7 +9,9 @@
 
 - Route components go in `app/routes/`
 - Shared components go in `app/components/`
-- Global styles in `public/`
+- Styles live in `app/style.css` as plain class selectors (`.lp-*` on the
+  home page, `.doc-*` elsewhere) — no CSS-in-JS
+- Hand-written `href` / `src` go through `basePath` from `app/lib/path.ts`
 
 ## CSS Variables
 
@@ -36,9 +38,10 @@ var(--accent-fg)        /* Primary button text */
 
 ## Imports
 
-Standard ES module imports:
+Standard ES module imports, relative within `app/`:
 
 ```typescript
-import { Hono } from "hono";
-import { css } from "hono/css";
+import { createRoute } from "honox/factory";
+import { ShotFigure } from "../../components/Figure";
+import { basePath } from "../../lib/path";
 ```
