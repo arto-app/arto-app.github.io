@@ -101,7 +101,7 @@ into view, and leaves them all alone — poster showing, controls on — for a
 reader who asked for reduced motion. Each clip therefore needs a
 `<name>-poster-<theme>.webp`, its own first frame, which is what stands in
 before playback and permanently without JavaScript. WebP because a poster
-is on screen for an instant: as PNG the twelve of them cost more than the
+is on screen for an instant: as PNG the posters together cost more than the
 videos they introduce.
 
 A new or re-cropped asset needs its pixel size recorded in
