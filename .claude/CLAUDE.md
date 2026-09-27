@@ -30,9 +30,14 @@ app/
 │   └── path.ts         # Base-path helper for hand-written href/src
 └── routes/           # File-based routing
     ├── _renderer.tsx # Layout wrapper
-    └── index.tsx     # Home page
+    ├── index.tsx     # Home page (landing page)
+    ├── features/     # Features page
+    ├── versions/     # Which Arto version the site describes
+    └── install/      # Install page
 
 public/               # Static assets (served as-is)
+├── images/           # Screenshots (-light / -dark WebP pairs)
+└── videos/           # Motion clips and the walkthrough (H.264)
 
 dist/                 # Build output (git-ignored)
 ```

@@ -1,6 +1,7 @@
 import type { Child } from "hono/jsx";
 import { createRoute } from "honox/factory";
 import { artoReferenceCurrent } from "../../lib/arto-version";
+import { basePath } from "../../lib/path";
 import {
   MotionFigure,
   ShotFigure,
@@ -43,8 +44,9 @@ export default createRoute((c) => {
         <h1 class="doc-title">Everything it does</h1>
         <p class="doc-lead">
           The whole surface of the application, grouped the way you meet it:
-          what it renders, how you get around, how you find things, what a
-          window is, and how it fits into the rest of your machine.
+          what it renders, how it helps you read, how you get around, how you
+          find things, what a window is, what a lens adds, and how it fits into
+          the rest of your machine.
         </p>
         <p class="doc-actions-note">
           Current as of {artoReferenceCurrent.version}.
@@ -133,6 +135,24 @@ export default createRoute((c) => {
             </p>
           </Term>
 
+          <Term
+            name="Long tables keep their header"
+            figure={
+              <ShotFigure
+                name="sticky-table"
+                alt="A long table of keybindings scrolled part-way, its header row pinned to the top of the view"
+                caption="Scrolled a screen into the table, and the columns are still named."
+                wide
+              />
+            }
+          >
+            <p class="term-desc">
+              A table taller than the window pins its header row to the top
+              while you read down it, and lets it go with the table's last row —
+              so the columns stay named past the first screen.
+            </p>
+          </Term>
+
           <Term name="Auto-reload">
             <p class="term-desc">
               A file that changes on disk re-renders in place, so a document
@@ -163,7 +183,10 @@ export default createRoute((c) => {
               rather than assumptions: bare URLs as links, math, wiki links,
               superscript and subscript, definition lists, heading attributes
               and permalinks, smart punctuation, CJK emphasis, and whether raw
-              HTML is filtered, kept or dropped.
+              HTML is filtered, passed through, or escaped so the markup itself
+              shows. Filtered — the default — also takes out event handlers and{" "}
+              <code class="doc-code">javascript:</code> links, not only the tags
+              GitHub strips.
             </p>
             <p class="term-desc">
               The reason to turn one off is usually a document that means
@@ -171,6 +194,162 @@ export default createRoute((c) => {
               dollars alone, so two shell variables on one line do not pair up
               into a formula; subscript off keeps a lone tilde literal, which is
               what <code class="doc-code">~5 minutes</code> means by it.
+            </p>
+          </Term>
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-section-title">Reading closely</h2>
+        <p class="doc-section-lead">
+          For the documents you read more than once — the plan an agent keeps
+          rewriting, the spec you are working through.
+        </p>
+        <div class="term-list">
+          <Term
+            name="What changed since you last read it"
+            figure={
+              <div class="figure-pair">
+                <ShotFigure
+                  name="changes"
+                  alt="A revised document with a line in the margin beside each block rewritten since it was last read"
+                  caption="A line beside each block added or rewritten since the last read."
+                />
+                <ShotFigure
+                  name="changes-contents"
+                  alt="The contents list with a dot on each heading that changes fall under, and a count of the changes"
+                  caption="The contents list dots the headings they fall under."
+                />
+              </div>
+            }
+          >
+            <p class="term-desc">
+              Arto keeps the version of a document you last read, and on the
+              next open marks what moved since: a line in the margin beside each
+              block added or rewritten, a hairline where text was taken out, and
+              a dot on the headings in the contents list those changes fall
+              under. Hovering a mark says how long ago that version was read.
+            </p>
+            <p class="term-desc">
+              <kbd>⌃]</kbd> and <kbd>⌃[</kbd> step from change to change, and{" "}
+              <strong>Mark as Read</strong> clears them and takes the page as it
+              is now. Whitespace-only edits are left unmarked unless you ask for
+              them.
+            </p>
+          </Term>
+
+          <Term
+            name="Highlights and notes"
+            figure={
+              <ShotFigure
+                name="highlights"
+                alt="Two highlights in a document, one green with a note shown on hover, one blue"
+                caption="The dot at the end of a highlight holds its note."
+                wide
+              />
+            }
+          >
+            <p class="term-desc">
+              Select a passage and highlight it from the context menu, in a
+              colour of your choosing, or with <kbd>⇧⌘H</kbd> in the colour you
+              used last. <kbd>⇧⌘M</kbd> highlights it and opens a note beside
+              it at once. A highlight with a note ends in a small dot that shows
+              the note on hover, and every highlight is listed in the contents
+              under its quote.
+            </p>
+            <p class="term-desc">
+              A highlight is found again by its words rather than by where it
+              was, so it survives edits above it in the file; if its text is
+              gone, Arto says so instead of marking the wrong place.
+            </p>
+          </Term>
+
+          <Term
+            name="Previews on hover"
+            figure={
+              <ShotFigure
+                name="link-preview"
+                alt="A card previewing the linked document, its heading, opening paragraph and diagram, beside the link in a reading list"
+                caption="Resting on a link to another document shows its opening, diagram and all."
+                wide
+              />
+            }
+          >
+            <p class="term-desc">
+              Rest the pointer on a footnote reference and the note appears
+              beside it; on a link to a heading, that section; on a link to
+              another document, its opening or the section it names — formulas
+              and diagrams drawn. A click still follows the link.{" "}
+              <kbd>⇧⌘Space</kbd> shows the same card for the link under the
+              keyboard cursor.
+            </p>
+          </Term>
+
+          <Term
+            name="Focus mode"
+            figure={
+              <MotionFigure
+                name="motion-focus"
+                alt="Entering focus mode: the header folds away, every block but the middle one dims, and the arrow keys step through the page"
+                caption="⇧⌘F, then ↓ a block at a time."
+              />
+            }
+          >
+            <p class="term-desc">
+              <kbd>⇧⌘F</kbd> folds the header away, puts the panel and the
+              gutter aside, and dims every block but the one in the middle of
+              the window. The wheel scrolls freely; the keys that scroll a line
+              — <kbd>↓</kbd> and <kbd>↑</kbd>, or <kbd>j</kbd> and{" "}
+              <kbd>k</kbd> in Vim's preset — step a block at a time instead. A click on the page, or{" "}
+              <kbd>Esc</kbd>, brings everything back as it was.
+            </p>
+          </Term>
+
+          <Term
+            name="Reading time"
+            figure={
+              <ZoomFigure
+                base="reading-time"
+                inset="reading-time-header"
+                alt="A document part-way through, with the time left shown at the right of the header"
+                marker={{ left: 76.5, top: 3.8, width: 23, height: 6.2 }}
+                at={{ right: 4, top: 12, width: 36 }}
+                caption="Past the top, the header counts down what is left from where you are."
+              />
+            }
+          >
+            <p class="term-desc">
+              The header says how long a document takes to read, and once you
+              start scrolling, how long is left from where you are. It counts
+              what each block asks of you — words, CJK characters, lines of
+              code, figures — rather than the length of the file, and stays out
+              of the way on anything shorter than a few minutes.
+            </p>
+          </Term>
+
+          <Term
+            name="Type set to your taste"
+            figure={
+              <ShotFigure
+                name="preferences-reading"
+                alt="The Reading pane in preferences: line length presets, line height, typeface choices and text size"
+                caption="The measure, the leading, the face and the size — each shown on a sample in four scripts further down the pane."
+              />
+            }
+          >
+            <p class="term-desc">
+              The Reading pane sets the measure, the line height, the typeface —
+              sans, serif, monospace or a family of your own — and the text
+              size. The measure is in em rather than characters, so it holds the
+              same line whether the document is in English or Japanese.
+            </p>
+            <p class="term-desc">
+              One Han character takes a different glyph in a Japanese, Chinese
+              or Korean face, so the CJK font language says whose faces to draw
+              them in — for Japanese documents on an English system, say. Left
+              on Auto, the system decides, as it does on GitHub.{" "}
+              <code class="doc-code">arto page</code> and Quick Look set the text
+              the same way.
             </p>
           </Term>
         </div>
@@ -203,19 +382,20 @@ export default createRoute((c) => {
           </Term>
 
           <Term
-            name="One panel, three faces"
+            name="One panel, many faces"
             figure={
               <MotionFigure
                 name="motion-panel"
-                alt="Switching the panel between its file explorer, history and bookmark faces"
-                caption="⌘1, ⌘2, ⌘3 between the faces; ⌘B to show the panel at all."
+                alt="Switching the panel between its file explorer, history, starred and links faces"
+                caption="⌘1 to ⌘4 between the faces; ⌘B to show the panel at all."
               />
             }
           >
             <p class="term-desc">
-              A file explorer, the reading history and your bookmarks are three
-              faces of one panel rather than three panels. It reveals on hover
-              and can be pinned open.
+              A file explorer, the reading history, your bookmarks and the
+              documents linking to this one are faces of one panel rather than
+              separate panels, a rail beside it switching between them. It
+              reveals on hover and can be pinned open.
             </p>
           </Term>
 
@@ -254,13 +434,32 @@ export default createRoute((c) => {
           </Term>
 
           <Term
+            name="What links here"
+            figure={
+              <ShotFigure
+                name="panel-links"
+                alt="The panel's Links face, listing the documents that link to the one on screen with the line each link is on"
+                wide
+              />
+            }
+          >
+            <p class="term-desc">
+              <kbd>⌘4</kbd> turns the panel to Links: every document under the
+              folder you are in that links to the one on screen, each with the
+              lines that do. Relative paths, wiki links and percent-encoded
+              names are resolved the way a click resolves them, so the list is
+              exactly the links that would bring you here.
+            </p>
+          </Term>
+
+          <Term
             name="The gutter"
             figure={
               <ZoomFigure
                 base="pinned"
                 inset="gutter"
                 alt="A document with the contents gutter standing in its right-hand margin"
-                marker={{ left: 92.5, top: 49.5, width: 6.3, height: 10.4 }}
+                marker={{ left: 94.1, top: 49.5, width: 6.3, height: 10.4 }}
                 at={{ right: 12, top: 41.5, width: 16 }}
                 caption="The ruler enlarged out of the shot it stands in. The thick green mark is where the reader is, on a heading a pinned search also matched; the grey ones are headings at two depths."
               />
@@ -312,7 +511,8 @@ export default createRoute((c) => {
             <p class="term-desc">
               A relative link opens the document it names, and a fragment
               scrolls to the heading it points at. <kbd>⌘[</kbd> and{" "}
-              <kbd>⌘]</kbd> move back and forward across the trail.
+              <kbd>⌘]</kbd> move back and forward across the trail, and so do
+              the side buttons of a mouse that has them.
             </p>
           </Term>
 
@@ -356,6 +556,12 @@ export default createRoute((c) => {
               finds a file, in a single list. A command found by name shows the
               keystroke that runs it, so the palette teaches the keyboard rather
               than replacing it.
+            </p>
+            <p class="term-desc">
+              The document already on screen is left out — it is the one place
+              you cannot go — so with nothing typed, the first row is the one you
+              read before it, and <kbd>⌘K</kbd> <kbd>Return</kbd> takes you
+              back.
             </p>
           </Term>
 
@@ -553,6 +759,70 @@ export default createRoute((c) => {
       </section>
 
       <section class="doc-section">
+        <h2 class="doc-section-title">Lenses</h2>
+        <p class="doc-section-lead">
+          An agent you choose, asked about the document you are reading — its
+          answer shown with the text, the file itself never changed.
+        </p>
+        <div class="term-list">
+          <Term
+            name="On the page, in a popover, beside each block"
+            figure={
+              <ShotFigure
+                name="lens-page"
+                alt="An English essay shown translated into Japanese by a page lens"
+                caption="A page lens: the translation stands where the original stood."
+                wide
+              />
+            }
+          >
+            <p class="term-desc">
+              A <strong>page</strong> lens takes the document's places block by
+              block from the top as it is written — a translation, each original
+              a point at its margin away. A <strong>popover</strong> answers
+              about the whole document from the header, or about one block
+              beside it — a summary, an explanation. An{" "}
+              <strong>annotate</strong> lens keeps a note beside each block that
+              has something worth saying — terms, a critique, a fact check with
+              its sources.
+            </p>
+          </Term>
+
+          <Term name="The agent is yours">
+            <p class="term-desc">
+              <code class="doc-code">claude</code> and{" "}
+              <code class="doc-code">codex</code> are run as they are installed,
+              with their tools off; a model under Ollama, any OpenAI-compatible
+              server, or a program of your own can be named instead. Preferences
+              → Lenses starts one from a recipe that leaves only the blanks to
+              fill, and a server's API key goes to the system's credential
+              store rather than into <code class="doc-code">config.json</code>.
+            </p>
+          </Term>
+
+          <Term name="Nothing leaves until you ask">
+            <p class="term-desc">
+              A lens runs only when you open it, and hands the text only to
+              what you configured — an Ollama server on your own machine keeps
+              it there. Searching the web or reading the files beside the
+              document are allowed per lens, one at a time, and off unless you
+              turn them on.
+            </p>
+          </Term>
+
+          <Term name="Answers are kept">
+            <p class="term-desc">
+              What a lens answered is filed per document, so reopening one —
+              after a restart, too — shows it again without asking again. An
+              answer whose block has since changed is marked outdated, and
+              regenerating asks only about what changed.{" "}
+              <a href={basePath("/lenses")}>More on lenses</a>
+            </p>
+          </Term>
+        </div>
+      </section>
+
+      <section class="doc-section">
         <h2 class="doc-section-title">Fitting in</h2>
         <p class="doc-section-lead">
           Themes, keys, and the parts of the operating system that expect a
@@ -632,6 +902,17 @@ export default createRoute((c) => {
             </p>
           </Term>
 
+          <Term name="A config file an editor understands">
+            <p class="term-desc">
+              Preferences writes <code class="doc-code">config.json</code>, and
+              the file can be edited by hand as well: Arto reads it again when
+              it is saved, so a change needs no restart. The file names its own
+              JSON Schema, so an editor that reads one completes every key,
+              explains it on hover, and flags a misspelled one before Arto
+              silently drops it.
+            </p>
+          </Term>
+
           <Term name="Zoom">
             <p class="term-desc">
               <kbd>⌘+</kbd>, <kbd>⌘−</kbd> and <kbd>⌘0</kbd>, or the trackpad,
@@ -668,6 +949,17 @@ export default createRoute((c) => {
               <code class="doc-code">arto</code> routes to the process already
               running rather than starting a second one, over a socket private
               to your user.
+            </p>
+          </Term>
+
+          <Term name="A window a script can place">
+            <p class="term-desc">
+              <code class="doc-code">--position</code>,{" "}
+              <code class="doc-code">--size</code> and{" "}
+              <code class="doc-code">--theme</code> set the window a command
+              opens, and <code class="doc-code">--wait-ready</code> holds the
+              command until that window has finished drawing — so a screen
+              capture or a scripted demo needs no fixed sleep.
             </p>
           </Term>
 

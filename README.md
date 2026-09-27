@@ -101,16 +101,48 @@ into view, and leaves them all alone — poster showing, controls on — for a
 reader who asked for reduced motion. Each clip therefore needs a
 `<name>-poster-<theme>.webp`, its own first frame, which is what stands in
 before playback and permanently without JavaScript. WebP because a poster
-is on screen for an instant: as PNG the twelve of them cost more than the
+is on screen for an instant: as PNG the posters together cost more than the
 videos they introduce.
 
 A new or re-cropped asset needs its pixel size recorded in
 `app/lib/image-size.ts`, or the page reserves no space for it and jumps as it
 loads. `imageSize` throws on a name it does not know, so the omission is loud.
 
-Captures are taken against a throwaway `HOME`, so the app's own welcome page,
-history and bookmarks show demo content rather than whatever the person
-holding the camera happens to have open.
+### Retaking them
+
+Everything is shot by the scripts in `shoot/`, on macOS, with
+[CleanShot X](https://cleanshot.com) doing the capturing:
+
+```sh
+python3 shoot/setup.py            # set Arto's state aside, put the demo in
+python3 shoot/shoot.py light all  # every still and clip, in one theme
+python3 shoot/shoot.py dark all
+python3 shoot/export.py light all # clips to MP4, as CleanShot renders them
+python3 shoot/export.py dark all
+python3 shoot/publish.py          # WebP, H.264 and posters into public/
+python3 shoot/restore.py          # put the reader's own state back
+```
+
+`setup.py` replaces Arto's history, bookmarks, pinned searches, highlights
+and lens answers with the demo set, and copies the documents in
+`shoot/demo/` to `~/Documents`, so the pages show demo content rather than
+whatever the person holding the camera happens to have open. It also uses the
+stock Default keybindings, since a reader's own `mappings.json` can predate
+the actions the site shows. The highlights, the baseline for the changed-RFC
+shot and the lens answers are made by driving Arto once and kept in
+`arto-backup/shoot-prepared`, which every scene starts from.
+
+The shoot types, clicks and moves the pointer: keep hands off the machine
+while it runs, quit any tiling window manager, and switch macOS's own
+appearance to match the theme being shot (the script does this). CleanShot's
+URL scheme API has to be enabled in its settings.
+
+Clips are recorded in CleanShot's Studio Mode and kept as `.cleanshotvideo`
+projects under `~/Desktop/Arto Site Captures`, not in this repository. A zoom
+or a background is added there before exporting — `shoot/copy_edits.py`
+copies one theme's edits onto the other's project, since both are recorded
+from the same script. The walkthroughs on the home page get a background;
+the figures beside the text do not.
 
 ## Maintainer Notes
 
