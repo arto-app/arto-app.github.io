@@ -397,13 +397,11 @@ export default createRoute((c) => {
         <div class="lp-closing">
           <h2 class="lp-closing-title">Start reading properly</h2>
           <p class="lp-closing-text">
-            Two lines on macOS: the install, then the quarantine attribute
-            removed, since Arto is not signed with an Apple Developer ID.
+            One line on macOS, through the Homebrew tap.
           </p>
           <CodeBlock
             label="Terminal"
-            code={`brew install --cask arto-app/tap/arto
-xattr -dr com.apple.quarantine /Applications/Arto.app`}
+            code={`brew install --cask arto-app/tap/arto`}
           />
           <div class="doc-actions">
             <a href={basePath("/install")} class="btn-primary">

@@ -25,14 +25,13 @@ export default createRoute((c) => {
         <h2 class="doc-section-title">macOS</h2>
         <p class="doc-p">
           Install with the Homebrew tap. Arto is not signed or notarized with
-          an Apple Developer ID, so the quarantine attribute has to be removed
-          after installing.
+          an Apple Developer ID, so the tap removes the quarantine attribute
+          that would otherwise stop macOS from opening it.
         </p>
         <div class="figure">
           <CodeBlock
             label="Terminal"
-            code={`brew install --cask arto-app/tap/arto
-xattr -dr com.apple.quarantine /Applications/Arto.app`}
+            code={`brew install --cask arto-app/tap/arto`}
           />
         </div>
         <div class="callout">

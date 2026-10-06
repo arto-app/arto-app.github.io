@@ -4,7 +4,6 @@
 
 ```sh
 brew install --cask arto-app/tap/arto
-xattr -dr com.apple.quarantine /Applications/Arto.app
 ```
 
 ## Linux
