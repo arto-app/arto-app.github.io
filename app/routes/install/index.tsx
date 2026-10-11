@@ -296,7 +296,7 @@ arto page README.md > README.html`}
         <p class="doc-p doc-muted">
           Full flags and behaviour are in the{" "}
           <a
-            href="https://github.com/arto-app/Arto/blob/main/docs/cli.md"
+            href="https://github.com/arto-app/Arto/blob/main/docs/spec/cli.md"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -305,7 +305,7 @@ arto page README.md > README.html`}
           , where <code class="doc-code">config.json</code> lives and what it
           holds in the{" "}
           <a
-            href="https://github.com/arto-app/Arto/blob/main/docs/configuration.md"
+            href="https://github.com/arto-app/Arto/blob/main/docs/spec/configuration.md"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -313,7 +313,7 @@ arto page README.md > README.html`}
           </a>
           , and the shortcut file format in the{" "}
           <a
-            href="https://github.com/arto-app/Arto/blob/main/docs/keybindings.md"
+            href="https://github.com/arto-app/Arto/blob/main/docs/spec/keybindings.md"
             target="_blank"
             rel="noopener noreferrer"
           >

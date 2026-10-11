@@ -4,7 +4,7 @@ import { CodeBlock } from "../../components/CodeBlock";
 import { MotionFigure, ShotFigure } from "../../components/Figure";
 import { artoReferenceCurrent } from "../../lib/arto-version";
 
-const LENSES_DOC = "https://github.com/arto-app/Arto/blob/main/docs/lenses.md";
+const LENSES_DOC = "https://github.com/arto-app/Arto/blob/main/docs/spec/lenses.md";
 
 type TermProps = {
   name: string;
